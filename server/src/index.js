@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const connectDB = require("./config/db");
 
@@ -10,8 +11,9 @@ const paymentRoutes = require("./routes/payment.routes");
 const webhookRoutes = require("./routes/webhook.routes");
 const productRoutes = require("./routes/product.routes");
 const orderRoutes = require("./routes/order.routes");
-const authRoutes = require("./routes/auth.routes"); // ✅ ADD THIS
+const authRoutes = require("./routes/auth.routes");
 const measurementRoutes = require("./routes/measurementRoutes");
+const storyRoutes = require("./routes/story.routes"); // ← ADD THIS
 
 const app = express();
 
@@ -27,22 +29,26 @@ app.use(
 // middleware
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
     credentials: true,
   }),
 );
 
 app.use(express.json());
 
+// Serve static files for uploads
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // routes
-app.use("/api/auth", authRoutes); // ✅ ADD THIS
+app.use("/api/auth", authRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/measurements", measurementRoutes);
+app.use("/api/stories", storyRoutes); // ← ADD THIS
 
 app.get("/", (req, res) => {
-  res.send("Moris Clothings API is running");
+  res.send("Living Beyond Meds API is running");
 });
 
 const PORT = process.env.PORT || 4000;

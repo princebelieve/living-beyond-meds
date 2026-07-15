@@ -1,17 +1,14 @@
-//client/src/services/api.js
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 // -------------------------
 // AUTH
 // -------------------------
-
 export async function registerUser(data) {
   const res = await fetch(`${BASE_URL}/api/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-
   return res.json();
 }
 
@@ -21,13 +18,8 @@ export async function loginUser(data) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-
   return res.json();
 }
-
-// -------------------------
-// PASSWORD RESET
-// -------------------------
 
 export async function forgotPassword(email) {
   const res = await fetch(`${BASE_URL}/api/auth/forgot-password`, {
@@ -35,7 +27,6 @@ export async function forgotPassword(email) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email }),
   });
-
   return res.json();
 }
 
@@ -45,26 +36,74 @@ export async function resetPassword(token, password) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ token, password }),
   });
-
   return res.json();
 }
 
 // -------------------------
-// STRIPE (UNCHANGED)
+// STRIPE / PAYMENTS
 // -------------------------
-
 export async function createCheckoutSession(productId) {
   const res = await fetch(`${BASE_URL}/api/payments/create-checkout-session`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ productId }),
   });
-
   const data = await res.json();
-
   if (!res.ok) {
     throw new Error(data.error || data.message || "Payment session failed");
   }
-
   return data;
+}
+
+// DONATION
+export async function createDonationSession(data) {
+  const res = await fetch(`${BASE_URL}/api/payments/create-donation-session`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  const result = await res.json();
+  if (!res.ok) {
+    throw new Error(
+      result.error || result.message || "Donation session failed",
+    );
+  }
+  return result;
+}
+
+// -------------------------
+// STORIES
+// -------------------------
+export async function getStories() {
+  const res = await fetch(`${BASE_URL}/api/stories`);
+  return res.json();
+}
+
+export async function getStory(id) {
+  const res = await fetch(`${BASE_URL}/api/stories/${id}`);
+  return res.json();
+}
+
+export async function createStory(data, token) {
+  const res = await fetch(`${BASE_URL}/api/stories`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: data,
+  });
+  return res.json();
+}
+
+// -------------------------
+// PRODUCTS
+// -------------------------
+export async function getProducts() {
+  const res = await fetch(`${BASE_URL}/api/products`);
+  return res.json();
+}
+
+export async function getProduct(id) {
+  const res = await fetch(`${BASE_URL}/api/products/${id}`);
+  return res.json();
 }

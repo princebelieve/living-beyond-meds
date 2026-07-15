@@ -1,0 +1,231 @@
+/* ===== NAVBAR STYLES ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar-scrolled {
+    background: #FFFFFF;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-top {
+    background: #6B1238;
+    color: #FFFFFF;
+    padding: 8px 0;
+    font-size: 0.85rem;
+}
+
+.navbar-top-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-contact {
+    display: flex;
+    gap: 24px;
+}
+
+.navbar-contact a {
+    color: #FFFFFF;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.navbar-contact a:hover {
+    color: #C9A87C;
+}
+
+.navbar-donate {
+    display: flex;
+    align-items: center;
+}
+
+.donate-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #C9A87C 0%, #DCC4A0 100%);
+    color: #1A1A1A;
+    padding: 6px 16px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.donate-btn:hover {
+    transform: scale(1.05);
+}
+
+.navbar-main {
+    padding: 12px 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-scrolled .navbar-main {
+    background: #FFFFFF;
+}
+
+.navbar-main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    text-decoration: none;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #8B1A4A;
+    letter-spacing: -0.5px;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: #1A1A1A;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #8B1A4A;
+    transition: all 0.3s ease;
+}
+
+.navbar-links a:hover::after {
+    width: 100%;
+}
+
+.navbar-links a:hover {
+    color: #8B1A4A;
+}
+
+.login-link {
+    padding: 8px 20px;
+    border-radius: 50px;
+    background: #8B1A4A;
+    color: #FFFFFF !important;
+}
+
+.login-link::after {
+    display: none !important;
+}
+
+.login-link:hover {
+    background: #6B1238;
+    color: #FFFFFF !important;
+}
+
+.admin-link {
+    padding: 8px 20px;
+    border-radius: 50px;
+    background: #C9A87C;
+    color: #1A1A1A !important;
+}
+
+.admin-link::after {
+    display: none !important;
+}
+
+.logout-btn {
+    background: transparent;
+    border: 2px solid #8B1A4A;
+    color: #8B1A4A;
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #8B1A4A;
+    color: #FFFFFF;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1A1A1A;
+}
+
+@media (max-width: 1024px) {
+    .navbar-contact {
+        gap: 12px;
+        font-size: 0.75rem;
+    }
+
+    .navbar-links {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-top {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .navbar-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: #FFFFFF;
+        flex-direction: column;
+        padding: 80px 30px 30px;
+        gap: 20px;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        overflow-y: auto;
+        align-items: stretch;
+    }
+
+    .navbar-links.active {
+        right: 0;
+    }
+
+    .navbar-links a,
+    .navbar-links .logout-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .login-link,
+    .admin-link {
+        text-align: center;
+    }
+}

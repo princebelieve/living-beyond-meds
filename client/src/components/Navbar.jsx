@@ -1,148 +1,107 @@
-//client/src/components/Navbar.jsx
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
-import useAuth from "../hooks/useAuth";
-import useClickOutside from "../hooks/useClickOutside";
+import { Menu, X, Phone, Mail, Heart } from "lucide-react";
+import "../styles/Navbar.css";
 
-export default function Navbar() {
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
-
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const { isLoggedIn, isAdmin, logout } = useAuth();
-
-  const menuRef = useRef(null);
-  const buttonRef = useRef(null);
-
-  useClickOutside({ current: [menuRef.current, buttonRef.current] }, () =>
-    setOpen(false),
-  );
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
 
-  function handleLogout() {
-    logout();
-    navigate("/login");
-    setOpen(false);
-  }
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Causes", path: "/causes" },
+    { name: "Gallery", path: "/gallery" },
+    { name: "Contact", path: "/contact" },
+  ];
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="navbar-brand" onClick={() => setOpen(false)}>
-        <img
-          src="/logo.png"
-          alt="Moris Clothing"
-          className={`logo ${scrolled ? "hide-logo" : ""}`}
-        />
-        <span className="brand-name">Moris Clothing</span>
-      </Link>
-
-      <div className="desktop-nav">
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/collection">Collection</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
-
-          {isAdmin && <Link to="/admin/products">Admin</Link>}
-
-          {!isLoggedIn ? (
-            <>
-              <Link to="/login">Login</Link>
-              <Link to="/register">Register</Link>
-            </>
-          ) : (
-            <button type="button" onClick={handleLogout}>
-              Logout
-            </button>
-          )}
+    <nav className={`navbar ${isScrolled ? "navbar-scrolled" : ""}`}>
+      <div className="navbar-top">
+        <div className="container">
+          <div className="navbar-top-content">
+            <div className="navbar-contact">
+              <a href="mailto:info@livingbeyondmeds.com">
+                <Mail size={16} /> info@livingbeyondmeds.com
+              </a>
+              <a href="tel:+447476088871">
+                <Phone size={16} /> +447476088871
+              </a>
+            </div>
+            <div className="navbar-donate">
+              <Link to="/donate" className="donate-btn">
+                <Heart size={16} /> Donate
+              </Link>
+            </div>
+          </div>
         </div>
-
-        <button
-          type="button"
-          className="cta"
-          onClick={() => navigate("/contact")}
-        >
-          Order Now
-        </button>
       </div>
 
-      <button
-        ref={buttonRef}
-        type="button"
-        className="hamburger"
-        onClick={() => setOpen(!open)}
-        aria-label="Toggle menu"
-      >
-        {open ? <X size={30} /> : <Menu size={30} />}
-      </button>
-
-      <div
-        ref={menuRef}
-        className={`mobile-menu-overlay ${open ? "active" : ""}`}
-      >
-        <div className="mobile-menu-links">
-          <Link to="/" onClick={() => setOpen(false)}>
-            Home
-          </Link>
-
-          <Link to="/collection" onClick={() => setOpen(false)}>
-            Collection
-          </Link>
-
-          <Link to="/about" onClick={() => setOpen(false)}>
-            About
-          </Link>
-
-          <Link to="/contact" onClick={() => setOpen(false)}>
-            Contact
-          </Link>
-          {isAdmin && (
-            <Link to="/admin/products" onClick={() => setOpen(false)}>
-              Admin
+      <div className="navbar-main">
+        <div className="container">
+          <div className="navbar-main-content">
+            <Link to="/" className="navbar-logo">
+              <span className="logo-text">Living Beyond Meds</span>
             </Link>
-          )}
 
-          {!isLoggedIn ? (
-            <>
-              <Link to="/login" onClick={() => setOpen(false)}>
-                Login
-              </Link>
+            <div className={`navbar-links ${isOpen ? "active" : ""}`}>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              {isLoggedIn ? (
+                <>
+                  <Link to="/admin/products" className="admin-link">
+                    Dashboard
+                  </Link>
+                  <button onClick={handleLogout} className="logout-btn">
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link to="/login" className="login-link">
+                  Login
+                </Link>
+              )}
+            </div>
 
-              <Link to="/register" onClick={() => setOpen(false)}>
-                Register
-              </Link>
-            </>
-          ) : (
             <button
-              type="button"
-              className="mobile-logout"
-              onClick={handleLogout}
+              className="mobile-menu-btn"
+              onClick={() => setIsOpen(!isOpen)}
             >
-              Logout
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
-          )}
+          </div>
         </div>
       </div>
     </nav>
   );
-}
+};
+
+export default Navbar;
