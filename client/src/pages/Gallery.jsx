@@ -34,7 +34,7 @@ const Gallery = () => {
 
       <section
         style={{
-          background: "linear-gradient(135deg, #8B1A4A 0%, #6B1238 100%)",
+          background: "linear-gradient(135deg, #0f2f44 0%, #16664d 100%)",
           color: "white",
           padding: "60px 0",
           textAlign: "center",
@@ -67,8 +67,8 @@ const Gallery = () => {
                   padding: "10px 24px",
                   borderRadius: "50px",
                   border:
-                    filter === type ? "2px solid #8B1A4A" : "2px solid #ddd",
-                  background: filter === type ? "#8B1A4A" : "white",
+                    filter === type ? "2px solid #16664d" : "2px solid #ddd",
+                  background: filter === type ? "#16664d" : "white",
                   color: filter === type ? "white" : "#333",
                   cursor: "pointer",
                   fontWeight: "600",

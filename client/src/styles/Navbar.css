@@ -14,7 +14,7 @@
 }
 
 .navbar-top {
-    background: #6B1238;
+    background: #0f2f44;
     color: #FFFFFF;
     padding: 8px 0;
     font-size: 0.85rem;
@@ -41,7 +41,7 @@
 }
 
 .navbar-contact a:hover {
-    color: #C9A87C;
+    color: #f3c13e;
 }
 
 .navbar-donate {
@@ -53,8 +53,8 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    background: linear-gradient(135deg, #C9A87C 0%, #DCC4A0 100%);
-    color: #1A1A1A;
+    background: linear-gradient(135deg, #f3c13e 0%, #16664d 100%);
+    color: #0f2f44;
     padding: 6px 16px;
     border-radius: 50px;
     text-decoration: none;
@@ -90,7 +90,7 @@
 .logo-text {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #8B1A4A;
+    color: #f3c13e;
     letter-spacing: -0.5px;
 }
 
@@ -115,7 +115,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: #8B1A4A;
+    background: #f3c13e;
     transition: all 0.3s ease;
 }
 
@@ -124,13 +124,13 @@
 }
 
 .navbar-links a:hover {
-    color: #8B1A4A;
+    color: #0f2f44;
 }
 
 .login-link {
     padding: 8px 20px;
     border-radius: 50px;
-    background: #8B1A4A;
+    background: #16664d;
     color: #FFFFFF !important;
 }
 
@@ -139,15 +139,15 @@
 }
 
 .login-link:hover {
-    background: #6B1238;
+    background: #0f2f44;
     color: #FFFFFF !important;
 }
 
 .admin-link {
     padding: 8px 20px;
     border-radius: 50px;
-    background: #C9A87C;
-    color: #1A1A1A !important;
+    background: #f3c13e;
+    color: #0f2f44 !important;
 }
 
 .admin-link::after {
@@ -156,8 +156,8 @@
 
 .logout-btn {
     background: transparent;
-    border: 2px solid #8B1A4A;
-    color: #8B1A4A;
+    border: 2px solid #16664d;
+    color: #16664d;
     padding: 8px 20px;
     border-radius: 50px;
     cursor: pointer;
@@ -166,7 +166,7 @@
 }
 
 .logout-btn:hover {
-    background: #8B1A4A;
+    background: #16664d;
     color: #FFFFFF;
 }
 

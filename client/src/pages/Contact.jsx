@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Globe } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 import Navbar from "../components/Navbar";
@@ -20,22 +20,20 @@ export default function Contact() {
                 className="brand-logo"
               />
               <span className="eyebrow">Living Beyond Meds</span>
-              <h1>Standing Together to Restore Hope</h1>
+              <h1>Contact Us</h1>
               <p>
-                Living Beyond Meds is an organisation birthed from personal
-                transformation, deep faith, and a calling to support women and
-                vulnerable individuals walking through some of life’s most
-                difficult journeys.
+                Get in touch to learn how you can support widows and vulnerable
+                women through prayer, giving, or partnership.
               </p>
               <div className="hero-actions">
                 <a
                   href="mailto:info@livingbeyondmeds.com"
                   className="btn btn-secondary"
                 >
-                  Email Us
+                  info@livingbeyondmeds.com
                 </a>
                 <a href="tel:+447476088871" className="btn btn-primary">
-                  Call +44 7476 088871
+                  +44 7476 088871
                 </a>
               </div>
             </div>
@@ -45,22 +43,24 @@ export default function Contact() {
               <div className="contact-card-row">
                 <Mail size={18} />
                 <div>
-                  <strong>Email</strong>
+                  <strong>Support Email</strong>
                   <p>info@livingbeyondmeds.com</p>
                 </div>
               </div>
               <div className="contact-card-row">
                 <Phone size={18} />
                 <div>
-                  <strong>Phone</strong>
+                  <strong>Phone Number</strong>
                   <p>+44 7476 088871</p>
                 </div>
               </div>
               <div className="contact-card-row">
                 <MapPin size={18} />
                 <div>
-                  <strong>Location</strong>
-                  <p>United Kingdom</p>
+                  <strong>Address</strong>
+                  <p>
+                    29 Cross Street Chapel, Cross Street, Manchester, M2 1NL
+                  </p>
                 </div>
               </div>
               <div className="contact-card-row social-row">
@@ -69,13 +69,13 @@ export default function Contact() {
                   <a href="https://facebook.com/" aria-label="Facebook">
                     <FaFacebook />
                   </a>
-                  <a href="https://facebook.com/" aria-label="Twitter">
+                  <a href="https://twitter.com/" aria-label="Twitter">
                     <FaTwitter />
                   </a>
-                  <a href="https://facebook.com/" aria-label="Instagram">
+                  <a href="https://instagram.com/" aria-label="Instagram">
                     <FaInstagram />
                   </a>
-                  <a href="https://facebook.com/" aria-label="YouTube">
+                  <a href="https://youtube.com/" aria-label="YouTube">
                     <FaYoutube />
                   </a>
                 </div>
@@ -94,20 +94,15 @@ export default function Contact() {
               <p>
                 Our work is strengthened through our partnership with The Widows
                 Empowerment Trust, a charity that has played a vital role in
-                Wumi’s own journey of rebuilding and restoration. Together, we
-                are committed to empowering widows, supporting families, and
-                giving voice to women who often feel unseen or unheard.
+                Wumi’s own journey of rebuilding and restoration.
               </p>
               <p>
-                We stand with women facing grief, isolation, trauma, and life
-                transitions. Our heart is to ensure that no woman feels alone
-                during her most vulnerable season.
+                Together, we are committed to empowering widows, supporting
+                families, and giving voice to women who often feel unseen or
+                unheard.
               </p>
-              <a
-                href="http://livingbeyondmeds.com/contact/"
-                className="btn btn-primary hero-link"
-              >
-                Join With Us
+              <a href="/about" className="btn btn-primary hero-link">
+                Learn More About Us
               </a>
             </div>
           </div>
@@ -152,6 +147,23 @@ export default function Contact() {
                   widowhood and mental health.
                 </p>
               </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="contact-map">
+          <div className="container">
+            <div className="section-heading">
+              <span className="eyebrow">Our Location</span>
+              <h2>Visit Us in Manchester</h2>
+            </div>
+            <div className="map-wrapper">
+              <iframe
+                title="Living Beyond Meds Manchester"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2381.1234567890123!2d-2.2420001847106!3d53.4820000797818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bb123456789ab%3A0xcdef1234567890ab!2s29%20Cross%20Street%20Chapel%2C%20Manchester%20M2%201NL!5e0!3m2!1sen!2suk!4v1700000000000"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
           </div>
         </section>

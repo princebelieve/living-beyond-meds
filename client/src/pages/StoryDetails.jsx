@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
+import { ArrowLeft, Calendar } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -28,13 +28,7 @@ const StoryDetails = () => {
 
   if (loading) {
     return (
-      <div
-        style={{
-          paddingTop: "120px",
-          textAlign: "center",
-          padding: "120px 20px 60px",
-        }}
-      >
+      <div style={{ paddingTop: "120px", textAlign: "center", padding: "120px 20px 60px" }}>
         <div className="container">Loading...</div>
       </div>
     );
@@ -42,16 +36,10 @@ const StoryDetails = () => {
 
   if (!story) {
     return (
-      <div
-        style={{
-          paddingTop: "120px",
-          textAlign: "center",
-          padding: "120px 20px 60px",
-        }}
-      >
+      <div style={{ paddingTop: "120px", textAlign: "center", padding: "120px 20px 60px" }}>
         <div className="container">
           <h2>Story not found</h2>
-          <Link to="/gallery" style={{ color: "#8B1A4A" }}>
+          <Link to="/gallery" style={{ color: "#16664d", textDecoration: "none", fontWeight: 600 }}>
             Back to Gallery
           </Link>
         </div>
@@ -65,7 +53,7 @@ const StoryDetails = () => {
 
       <section
         style={{
-          background: "linear-gradient(135deg, #8B1A4A 0%, #6B1238 100%)",
+          background: "linear-gradient(135deg, #0f2f44 0%, #16664d 100%)",
           color: "white",
           padding: "60px 0",
         }}
@@ -117,7 +105,7 @@ const StoryDetails = () => {
               >
                 <span
                   style={{
-                    background: "#8B1A4A",
+                    background: "#16664d",
                     color: "white",
                     padding: "4px 16px",
                     borderRadius: "50px",
@@ -136,8 +124,7 @@ const StoryDetails = () => {
                     color: "#666",
                   }}
                 >
-                  <Calendar size={16} />{" "}
-                  {new Date(story.createdAt).toLocaleDateString()}
+                  <Calendar size={16} /> {new Date(story.createdAt).toLocaleDateString()}
                 </span>
               </div>
 

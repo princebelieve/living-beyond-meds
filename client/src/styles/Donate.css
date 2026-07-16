@@ -4,7 +4,7 @@
 }
 
 .donate-hero {
-    background: linear-gradient(135deg, #8B1A4A 0%, #6B1238 100%);
+    background: linear-gradient(135deg, #0f2f44 0%, #16664d 100%);
     color: #FFFFFF;
     padding: 60px 0 80px;
     text-align: center;
@@ -73,8 +73,8 @@
 }
 
 .type-btn.active {
-    border-color: #8B1A4A;
-    background: #8B1A4A;
+    border-color: #16664d;
+    background: #16664d;
     color: #FFFFFF;
 }
 
@@ -96,8 +96,8 @@
 }
 
 .amount-btn.active {
-    border-color: #8B1A4A;
-    background: #8B1A4A;
+    border-color: #16664d;
+    background: #16664d;
     color: #FFFFFF;
 }
 
@@ -116,7 +116,7 @@
 
 .custom-amount input:focus {
     outline: none;
-    border-color: #8B1A4A;
+    border-color: #16664d;
 }
 
 .cause-grid {
@@ -136,8 +136,8 @@
 }
 
 .cause-btn.active {
-    border-color: #8B1A4A;
-    background: #8B1A4A;
+    border-color: #16664d;
+    background: #16664d;
     color: #FFFFFF;
 }
 
@@ -147,8 +147,8 @@
     justify-content: center;
     gap: 10px;
     padding: 16px;
-    background: linear-gradient(135deg, #C9A87C 0%, #DCC4A0 100%);
-    color: #1A1A1A;
+    background: linear-gradient(135deg, #f3c13e 0%, #16664d 100%);
+    color: #0f2f44;
     border: none;
     border-radius: 12px;
     font-size: 1.1rem;
@@ -215,7 +215,7 @@
 
 .impact-amount {
     font-weight: 700;
-    color: #8B1A4A;
+    color: #16664d;
     min-width: 50px;
 }
 
@@ -225,7 +225,7 @@
 }
 
 .donate-testimonial {
-    background: linear-gradient(135deg, #8B1A4A 0%, #6B1238 100%);
+    background: linear-gradient(135deg, #0f2f44 0%, #16664d 100%);
     padding: 30px;
     border-radius: 20px;
     color: #FFFFFF;

@@ -11,7 +11,7 @@ const Causes = () => {
       description:
         "Providing financial support, counseling, and community for widows rebuilding their lives.",
       icon: Heart,
-      color: "#8B1A4A",
+      color: "#16664d",
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ const Causes = () => {
       description:
         "Offering professional counseling and support groups for those dealing with grief and trauma.",
       icon: Users,
-      color: "#6B1238",
+      color: "#0f2f44",
     },
     {
       id: 3,
@@ -27,7 +27,7 @@ const Causes = () => {
       description:
         "Empowering women with practical skills for financial independence and self-sufficiency.",
       icon: BookOpen,
-      color: "#C9A87C",
+      color: "#f3c13e",
     },
     {
       id: 4,
@@ -35,7 +35,7 @@ const Causes = () => {
       description:
         "Reaching vulnerable communities with essential support and resources.",
       icon: Globe,
-      color: "#A82E62",
+      color: "#0f2f44",
     },
   ];
 
@@ -45,7 +45,7 @@ const Causes = () => {
 
       <section
         style={{
-          background: "linear-gradient(135deg, #8B1A4A 0%, #6B1238 100%)",
+          background: "linear-gradient(135deg, #0f2f44 0%, #16664d 100%)",
           color: "white",
           padding: "60px 0",
           textAlign: "center",
@@ -54,8 +54,7 @@ const Causes = () => {
         <div className="container">
           <h1 style={{ fontSize: "3rem", marginBottom: "16px" }}>Our Causes</h1>
           <p style={{ fontSize: "1.2rem", opacity: 0.9 }}>
-            Every cause we support brings hope and dignity to those who need it
-            most
+            Every cause we support brings hope and dignity to those who need it most.
           </p>
         </div>
       </section>
@@ -158,8 +157,7 @@ const Causes = () => {
               margin: "0 auto 32px",
             }}
           >
-            Your support helps us continue our mission of bringing compassion
-            and dignity to widows and vulnerable individuals.
+            Your support helps us continue our mission of bringing compassion and dignity to widows and vulnerable individuals.
           </p>
           <Link
             to="/donate"
@@ -167,8 +165,8 @@ const Causes = () => {
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
-              background: "linear-gradient(135deg, #C9A87C 0%, #DCC4A0 100%)",
-              color: "#1A1A1A",
+              background: "linear-gradient(135deg, #f3c13e 0%, #16664d 100%)",
+              color: "#0f2f44",
               padding: "16px 40px",
               borderRadius: "50px",
               fontWeight: "700",
