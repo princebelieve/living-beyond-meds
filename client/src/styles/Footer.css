@@ -1,0 +1,135 @@
+.footer {
+    background: linear-gradient(180deg, #0f2f44 0%, #143549 100%);
+    color: #f8fafc;
+    padding: 60px 0 28px;
+}
+
+.footer .container {
+    display: grid;
+    gap: 32px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+}
+
+.footer-about h3,
+.footer-links h4,
+.footer-contact h4,
+.footer-cta h4 {
+    color: #f3c13e;
+    margin-bottom: 18px;
+}
+
+.footer-about p {
+    color: rgba(248, 250, 252, 0.88);
+    line-height: 1.85;
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(243, 193, 62, 0.15);
+    color: #0f2f44;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.footer-social a:hover {
+    transform: translateY(-2px);
+    background: #f3c13e;
+    color: #0f2f44;
+}
+
+.footer-links ul,
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li,
+.footer-contact li {
+    margin-bottom: 12px;
+}
+
+.footer-links a,
+.footer-contact a,
+.footer-contact span {
+    color: rgba(248, 250, 252, 0.88);
+    text-decoration: none;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+    color: #f3c13e;
+}
+
+.footer-links li {
+    font-size: 0.95rem;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-contact svg {
+    min-width: 18px;
+    color: #f3c13e;
+}
+
+.footer-cta {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    padding: 26px 24px;
+}
+
+.footer-cta p {
+    color: rgba(248, 250, 252, 0.88);
+    margin-bottom: 18px;
+    line-height: 1.8;
+}
+
+.footer-donate-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: #f3c13e;
+    color: #0f2f44;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.footer-donate-btn:hover {
+    background: #e2b032;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 20px;
+    color: rgba(248, 250, 252, 0.7);
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}

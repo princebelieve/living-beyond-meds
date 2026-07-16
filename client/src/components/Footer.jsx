@@ -11,20 +11,40 @@ const Footer = () => {
           <div className="footer-about">
             <h3>Living Beyond Meds</h3>
             <p>
-              An organization set up to provide help and raise money for those
-              in need. Supporting widows, families, and vulnerable individuals.
+              A faith-led nonprofit empowering widows, families, and vulnerable
+              women through compassion, community, and practical support.
             </p>
             <div className="footer-social">
-              <a href="#" aria-label="Facebook">
+              <a
+                href="https://facebook.com/"
+                aria-label="Facebook"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaFacebook size={20} />
               </a>
-              <a href="#" aria-label="Twitter">
+              <a
+                href="https://twitter.com/"
+                aria-label="Twitter"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaTwitter size={20} />
               </a>
-              <a href="#" aria-label="Instagram">
+              <a
+                href="https://instagram.com/"
+                aria-label="Instagram"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaInstagram size={20} />
               </a>
-              <a href="#" aria-label="YouTube">
+              <a
+                href="https://youtube.com/"
+                aria-label="YouTube"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaYoutube size={20} />
               </a>
             </div>
@@ -56,7 +76,7 @@ const Footer = () => {
             <ul>
               <li>
                 <Phone size={16} />
-                <a href="tel:+447476088871">+447476088871</a>
+                <a href="tel:+447476088871">+44 7476 088871</a>
               </li>
               <li>
                 <Mail size={16} />
