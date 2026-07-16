@@ -11,6 +11,8 @@ export default function Login() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -18,21 +20,34 @@ export default function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
-    const res = await loginUser(form);
+    try {
+      const res = await loginUser(form);
 
-    if (res.token) {
-      setToken(res.token);
+      if (res.token) {
+        setToken(res.token);
 
-      const payload = JSON.parse(atob(res.token.split(".")[1]));
+        const payload = JSON.parse(atob(res.token.split(".")[1]));
 
-      if (payload.role === "admin") {
-        navigate("/admin/products");
-      } else {
-        navigate("/");
+        if (payload.role === "admin") {
+          navigate("/admin/products");
+        } else {
+          navigate("/");
+        }
+        return;
       }
-    } else {
-      alert(res.message || "Login failed");
+
+      setError(
+        res.message ||
+          "Unable to sign in. Please check your email and password and try again.",
+      );
+    } catch (err) {
+      console.error(err);
+      setError("Unable to reach the server. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -46,6 +61,8 @@ export default function Login() {
           Be part of something bigger. Log in to continue supporting our
           worldwide mission.
         </p>
+
+        {error ? <p className="form-message form-error">{error}</p> : null}
 
         <form onSubmit={handleSubmit}>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -75,8 +92,8 @@ export default function Login() {
               </button>
             </div>
 
-            <button type="submit" className="btn-primary">
-              Sign In
+            <button type="submit" className="btn-primary" disabled={loading}>
+              {loading ? "Signing in..." : "Sign In"}
             </button>
           </div>
         </form>

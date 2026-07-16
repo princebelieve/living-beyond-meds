@@ -101,6 +101,18 @@
     transform: translateY(-1px);
 }
 
+.btn-primary:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-message {
+    margin: 0 0 16px;
+    font-size: 0.95rem;
+    color: #b00020;
+}
+
 .form a {
     color: var(--gold);
 }

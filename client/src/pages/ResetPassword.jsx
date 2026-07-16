@@ -7,6 +7,8 @@ import "../styles/Auth.css";
 
 export default function ResetPassword() {
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [params] = useSearchParams();
   const nav = useNavigate();
 
@@ -14,12 +16,32 @@ export default function ResetPassword() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
-    const res = await resetPassword(token, password);
+    try {
+      if (!token) {
+        setError(
+          "Missing reset token. Please use the reset link from your email.",
+        );
+        return;
+      }
 
-    alert(res.message || "Password reset successful");
+      const res = await resetPassword(token, password);
 
-    nav("/login");
+      if (res.message && res.message.toLowerCase().includes("success")) {
+        nav("/login");
+      } else if (res.message) {
+        setError(res.message);
+      } else {
+        setError("Unable to reset password. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Unable to reach the server. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -32,6 +54,8 @@ export default function ResetPassword() {
         <p className="muted" style={{ marginBottom: 20 }}>
           Enter your new password below.
         </p>
+
+        {error ? <p className="form-message form-error">{error}</p> : null}
 
         <form onSubmit={handleSubmit}>
           <input
@@ -46,8 +70,9 @@ export default function ResetPassword() {
             type="submit"
             className="btn-primary"
             style={{ marginTop: 14 }}
+            disabled={loading}
           >
-            Reset Password
+            {loading ? "Resetting..." : "Reset Password"}
           </button>
         </form>
       </div>

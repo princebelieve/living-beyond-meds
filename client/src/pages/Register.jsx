@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { registerUser } from "../services/api";
 import "../styles/Auth.css";
 
 export default function Register() {
@@ -13,34 +14,30 @@ export default function Register() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
     try {
-      const BASE_URL = import.meta.env.VITE_API_URL;
+      const res = await registerUser(form);
 
-      const res = await fetch(`${BASE_URL}/api/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        alert(data.message || "Registration failed");
+      if (res.token) {
+        alert("Account created successfully");
+        navigate("/login");
         return;
       }
 
-      alert("Account created successfully");
-      navigate("/login");
+      setError(res.message || "Registration failed. Please try again.");
     } catch (err) {
       console.error(err);
-      alert("Unable to connect to server");
+      setError("Unable to connect to server. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,6 +49,8 @@ export default function Register() {
         <p className="muted" style={{ marginBottom: 20 }}>
           Be part of something bigger. Join us in making a difference.
         </p>
+
+        {error ? <p className="form-message form-error">{error}</p> : null}
 
         <form onSubmit={handleSubmit}>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -89,8 +88,8 @@ export default function Register() {
               </button>
             </div>
 
-            <button type="submit" className="btn-primary">
-              Join With Us
+            <button type="submit" className="btn-primary" disabled={loading}>
+              {loading ? "Joining..." : "Join With Us"}
             </button>
           </div>
         </form>

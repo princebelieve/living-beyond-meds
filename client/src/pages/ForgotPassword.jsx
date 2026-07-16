@@ -8,16 +8,27 @@ import "../styles/Auth.css";
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
-    const res = await forgotPassword(email);
+    try {
+      const res = await forgotPassword(email);
 
-    if (res.message) {
-      setSent(true);
-    } else {
-      alert("Something went wrong");
+      if (res.message) {
+        setSent(true);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Unable to reach the server. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -30,6 +41,8 @@ export default function ForgotPassword() {
 
         <p>Enter your email and we’ll send you a reset link.</p>
 
+        {error ? <p className="form-message form-error">{error}</p> : null}
+
         {!sent ? (
           <form onSubmit={handleSubmit}>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -41,8 +54,8 @@ export default function ForgotPassword() {
                 required
               />
 
-              <button type="submit" className="btn-primary">
-                Send Reset Link
+              <button type="submit" className="btn-primary" disabled={loading}>
+                {loading ? "Sending..." : "Send Reset Link"}
               </button>
             </div>
           </form>
