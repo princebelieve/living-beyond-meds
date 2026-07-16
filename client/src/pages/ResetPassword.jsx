@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { resetPassword } from "../services/api";
 import Navbar from "../components/Navbar";
+import "../styles/Auth.css";
 
 export default function ResetPassword() {
   const [password, setPassword] = useState("");
@@ -25,7 +26,7 @@ export default function ResetPassword() {
     <>
       <Navbar />
 
-      <div className="form" style={{ marginTop: 50 }}>
+      <div className="form">
         <h2>Reset Password</h2>
 
         <p className="muted" style={{ marginBottom: 20 }}>

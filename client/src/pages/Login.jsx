@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { loginUser } from "../services/api";
 import { setToken } from "../utils/auth";
 import { Eye, EyeOff } from "lucide-react";
+import "../styles/Auth.css";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -39,10 +40,11 @@ export default function Login() {
     <>
       <Navbar />
 
-      <div className="form" style={{ marginTop: 50 }}>
-        <h1>Login</h1>
+      <div className="form">
+        <h1>Welcome Back</h1>
         <p className="muted" style={{ marginBottom: 20 }}>
-          Welcome back. Sign in to manage your products.
+          Be part of something bigger. Log in to continue supporting our
+          worldwide mission.
         </p>
 
         <form onSubmit={handleSubmit}>

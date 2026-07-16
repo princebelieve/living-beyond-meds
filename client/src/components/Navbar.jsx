@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail, Heart } from "lucide-react";
 import "../styles/Navbar.css";
 
@@ -7,6 +7,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(
     () => !!localStorage.getItem("token"),
   );
@@ -59,19 +60,31 @@ const Navbar = () => {
         <div className="container">
           <div className="navbar-main-content">
             <Link to="/" className="navbar-logo">
+              <img
+                src="/logo.png"
+                alt="Living Beyond Meds logo"
+                className="navbar-logo-image"
+              />
               <span className="logo-text">Living Beyond Meds</span>
             </Link>
 
             <div className={`navbar-links ${isOpen ? "active" : ""}`}>
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive =
+                  location.pathname === link.path ||
+                  (link.path !== "/" &&
+                    location.pathname.startsWith(link.path));
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className={isActive ? "nav-link active" : "nav-link"}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
               {isLoggedIn ? (
                 <>
                   <Link to="/admin/products" className="admin-link">

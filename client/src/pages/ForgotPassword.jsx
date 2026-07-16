@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { forgotPassword } from "../services/api";
+import "../styles/Auth.css";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -24,7 +25,7 @@ export default function ForgotPassword() {
     <>
       <Navbar />
 
-      <div className="form" style={{ marginTop: 50 }}>
+      <div className="form">
         <h1>Forgot Password</h1>
 
         <p>Enter your email and we’ll send you a reset link.</p>

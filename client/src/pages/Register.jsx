@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar"; // ✅ ADD THIS
+import Navbar from "../components/Navbar";
+import "../styles/Auth.css";
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -45,11 +46,11 @@ export default function Register() {
 
   return (
     <>
-      <Navbar /> {/* ✅ THIS WAS WHAT YOU WERE MISSING */}
-      <div className="form" style={{ marginTop: 50 }}>
-        <h1>Create Account</h1>
+      <Navbar />
+      <div className="form">
+        <h1>Join In Worldwide Team</h1>
         <p className="muted" style={{ marginBottom: 20 }}>
-          Join us to start managing your products.
+          Be part of something bigger. Join us in making a difference.
         </p>
 
         <form onSubmit={handleSubmit}>
@@ -89,7 +90,7 @@ export default function Register() {
             </div>
 
             <button type="submit" className="btn-primary">
-              Create Account
+              Join With Us
             </button>
           </div>
         </form>

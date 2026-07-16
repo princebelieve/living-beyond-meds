@@ -39,6 +39,11 @@ export default function Contact() {
             </div>
 
             <aside className="hero-card">
+              <img
+                src="/founder.jpg"
+                alt="Founder of Living Beyond Meds"
+                className="founder-photo"
+              />
               <h2>Contact Details</h2>
               <div className="contact-card-row">
                 <Mail size={18} />
