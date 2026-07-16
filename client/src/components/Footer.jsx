@@ -1,14 +1,6 @@
 import { Link } from "react-router-dom";
-import {
-  Heart,
-  Phone,
-  Mail,
-  MapPin,
-  Facebook,
-  Twitter,
-  Instagram,
-  Youtube,
-} from "lucide-react";
+import { Heart, Phone, Mail, MapPin } from "lucide-react";
+import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import "../styles/Footer.css";
 
 const Footer = () => {
@@ -24,16 +16,16 @@ const Footer = () => {
             </p>
             <div className="footer-social">
               <a href="#" aria-label="Facebook">
-                <Facebook size={20} />
+                <FaFacebook size={20} />
               </a>
               <a href="#" aria-label="Twitter">
-                <Twitter size={20} />
+                <FaTwitter size={20} />
               </a>
               <a href="#" aria-label="Instagram">
-                <Instagram size={20} />
+                <FaInstagram size={20} />
               </a>
               <a href="#" aria-label="YouTube">
-                <Youtube size={20} />
+                <FaYoutube size={20} />
               </a>
             </div>
           </div>

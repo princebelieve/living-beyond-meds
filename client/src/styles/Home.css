@@ -4,7 +4,7 @@
     min-height: 80vh;
     display: flex;
     align-items: center;
-    background: url('/images/hero-bg.jpg') center/cover no-repeat;
+    background: url('/hero.jpg') center/cover no-repeat;
     color: #FFFFFF;
     margin-top: -1px;
 }
