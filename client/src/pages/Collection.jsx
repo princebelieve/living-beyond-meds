@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import ProductGrid from "../components/ProductGrid";
 import useScrollReveal from "../hooks/useScrollReveal";
+import "../styles/Product.css";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 

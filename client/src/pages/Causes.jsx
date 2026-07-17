@@ -54,7 +54,8 @@ const Causes = () => {
         <div className="container">
           <h1 style={{ fontSize: "3rem", marginBottom: "16px" }}>Our Causes</h1>
           <p style={{ fontSize: "1.2rem", opacity: 0.9 }}>
-            Every cause we support brings hope and dignity to those who need it most.
+            Every cause we support brings hope and dignity to those who need it
+            most.
           </p>
         </div>
       </section>
@@ -157,7 +158,8 @@ const Causes = () => {
               margin: "0 auto 32px",
             }}
           >
-            Your support helps us continue our mission of bringing compassion and dignity to widows and vulnerable individuals.
+            Your support helps us continue our mission of bringing compassion
+            and dignity to widows and vulnerable individuals.
           </p>
           <Link
             to="/donate"
@@ -165,8 +167,8 @@ const Causes = () => {
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
-              background: "linear-gradient(135deg, #f3c13e 0%, #16664d 100%)",
-              color: "#0f2f44",
+              background: "#16664d",
+              color: "#FFFFFF",
               padding: "16px 40px",
               borderRadius: "50px",
               fontWeight: "700",

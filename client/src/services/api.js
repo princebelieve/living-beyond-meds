@@ -95,6 +95,27 @@ export async function createStory(data, token) {
   return res.json();
 }
 
+export async function updateStory(id, data, token) {
+  const res = await fetch(`${BASE_URL}/api/stories/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: data,
+  });
+  return res.json();
+}
+
+export async function deleteStory(id, token) {
+  const res = await fetch(`${BASE_URL}/api/stories/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.json();
+}
+
 // -------------------------
 // PRODUCTS
 // -------------------------

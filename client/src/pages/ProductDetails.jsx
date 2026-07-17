@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { createCheckoutSession } from "../services/api";
+import "../styles/Product.css";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 

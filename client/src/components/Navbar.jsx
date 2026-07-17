@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail, Heart } from "lucide-react";
+import useClickOutside from "../hooks/useClickOutside";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
@@ -11,6 +12,14 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(
     () => !!localStorage.getItem("token"),
   );
+  const menuRef = useRef(null);
+  const toggleRef = useRef(null);
+  const clickRefs = useRef([]);
+  clickRefs.current = [menuRef.current, toggleRef.current];
+
+  useClickOutside(clickRefs, () => {
+    if (isOpen) setIsOpen(false);
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,7 +77,10 @@ const Navbar = () => {
               <span className="logo-text">Living Beyond Meds</span>
             </Link>
 
-            <div className={`navbar-links ${isOpen ? "active" : ""}`}>
+            <div
+              ref={menuRef}
+              className={`navbar-links ${isOpen ? "active" : ""}`}
+            >
               {navLinks.map((link) => {
                 const isActive =
                   location.pathname === link.path ||
@@ -102,8 +114,9 @@ const Navbar = () => {
             </div>
 
             <button
+              ref={toggleRef}
               className="mobile-menu-btn"
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => setIsOpen((prev) => !prev)}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
