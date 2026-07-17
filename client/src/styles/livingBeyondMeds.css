@@ -1,303 +1,142 @@
-:root {
+/* ========================================
+   LIVINGBEYONDMEDS.CSS - Main styles
+   ======================================== */
 
-    --green: #1F8B4D;
-    --navy: #0D3B66;
-    --gold: #b38d34;
-    --light: #F7FAF8;
+/* Import animations - this file exists now */
+@import './animations.css';
 
-}
+/* Import component styles - CORRECTED PATHS */
+@import './About.css';
+@import './Contact.css';
+@import './Donate.css';
+@import './Footer.css';
+@import './Home.css';
+@import './Navbar.css';
+@import './Product.css';
 
-
-.container {
-
-    width: 90%;
-    max-width: 1240px;
-    margin: auto;
-
-}
-
-
-
-body {
-
-    font-family: Inter, sans-serif;
-
-}
-
-
-
-.lbm-navbar {
-
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: white;
-
-}
-
-
-
-.lbm-nav {
-
-    height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-}
-
-
-
-.lbm-logo {
-
-    height: 65px;
-
-}
-
-
-
-.lbm-links {
-
-    display: flex;
-    gap: 30px;
-
-}
-
-
-.lbm-links a {
-
-    font-weight: 600;
-
-}
-
-
-
-.lbm-donate-btn,
-.lbm-btn {
-
-    padding: 14px 28px;
-    border-radius: 30px;
-    background: var(--green);
-    color: white;
-
-}
-
-
-
-.gold {
-
+/* ----- GLOBAL UTILITY CLASSES ----- */
+.section-tag {
+    display: inline-block;
     background: var(--gold);
-
+    color: var(--navy);
+    padding: 6px 20px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-gold);
 }
 
+.section-tag.green {
+    background: var(--deep-green);
+    color: var(--white);
+    box-shadow: var(--shadow-green);
+}
 
+.section-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
 
-.lbm-hero {
+.section-header h2 {
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+}
 
-    height: 700px;
-    background: url("/hero.jpg") center/cover;
-    position: relative;
-    display: flex;
+.section-header p {
+    font-size: 1.1rem;
+    color: var(--gray-500);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
     align-items: center;
-
-}
-
-
-.lbm-overlay {
-
-    position: absolute;
-    inset: 0;
-    background: rgba(13, 59, 102, .65);
-
-}
-
-
-.lbm-hero-content {
-
-    position: relative;
-    color: white;
-    max-width: 700px;
-
-}
-
-
-
-.lbm-hero h1 {
-
-    font-size: 64px;
-
-}
-
-
-
-.lbm-hero p {
-
-    font-size: 20px;
-    line-height: 1.7;
-
-}
-
-
-
-.lbm-actions {
-
-    display: flex;
-    gap: 20px;
-    margin-top: 30px;
-
-}
-
-
-
-.lbm-section {
-
-    padding: 90px 0;
-
-}
-
-
-
-.lbm-grid {
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-
-}
-
-
-
-.lbm-founder img {
-
-    border-radius: 50%;
-
-}
-
-
-
-.lbm-cards {
-
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-
-}
-
-
-
-.lbm-card {
-
-    padding: 30px;
-    border-radius: 20px;
-    background: white;
-    box-shadow: 0 10px 30px #0001;
-
-}
-
-
-
-.light {
-
-    background: var(--light);
-
-}
-
-
-
-.lbm-impact {
-
-    background: var(--navy);
-    color: white;
-    padding: 70px 0;
-
-}
-
-
-
-.lbm-stats {
-
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    text-align: center;
-
-}
-
-
-
-.lbm-donate {
-
-    padding: 100px 0;
-    text-align: center;
-
-}
-
-
-
-.lbm-footer {
-
-    background: #111;
-    color: white;
-    padding: 60px 0;
-
-}
-
-
-
-.lbm-footer-links {
-
-    display: flex;
-    gap: 25px;
-    margin: 30px 0;
-
-}
-
-
-
-@media(max-width:900px) {
-
-    .lbm-links {
-
-        display: none;
-
-    }
-
-
-    .lbm-grid,
-    .lbm-cards,
-    .lbm-stats {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .lbm-hero h1 {
-
-        font-size: 40px;
-
-    }
-
-}
-
-/* ================= IMAGE SAFETY ================= */
-
-.lbm-founder {
-
-    display: flex;
     justify-content: center;
-    align-items: center;
-
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
 }
 
+.btn-primary {
+    background: var(--deep-green);
+    color: var(--white);
+    box-shadow: var(--shadow-green);
+}
 
-.lbm-founder img {
+.btn-primary:hover {
+    background: var(--deep-green-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 0 32px rgba(22, 102, 77, 0.5);
+}
 
-    width: 100%;
-    max-width: 420px;
-    height: 420px;
+.btn-secondary {
+    background: var(--gold);
+    color: var(--navy);
+    box-shadow: var(--shadow-gold);
+}
 
-    object-fit: cover;
+.btn-secondary:hover {
+    background: var(--gold-light);
+    transform: translateY(-3px);
+    box-shadow: 0 0 32px rgba(243, 193, 62, 0.5);
+}
 
-    border-radius: 50%;
+.btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
 
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    border-color: var(--white);
+}
+
+/* Page layout */
+.page {
+    padding-top: 80px;
+    min-height: 80vh;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.section-alt {
+    padding: 60px 0;
+}
+
+.title {
+    font-size: clamp(2rem, 3vw, 3rem);
+    color: var(--navy);
+    margin-bottom: 12px;
+}
+
+.muted {
+    color: var(--gray-500);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .page {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
