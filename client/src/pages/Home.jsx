@@ -7,7 +7,6 @@ import {
   Globe,
   Award,
   Phone,
-  Mail,
   PlayCircle,
   ArrowRight,
   ChevronRight,
@@ -15,11 +14,17 @@ import {
 import useScrollReveal from "../hooks/useScrollReveal";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Particles from "../components/Particles";
+import ScrollIndicator from "../components/ScrollIndicator";
 import "../styles/Home.css";
 
 const Home = () => {
   const [stories, setStories] = useState([]);
+  const [loadingStories, setLoadingStories] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [animateText, setAnimateText] = useState(true);
+  const [previousSlide, setPreviousSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const heroSlides = [
     {
@@ -44,26 +49,64 @@ const Home = () => {
 
   // Auto-switch slides
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    if (heroSlides.length <= 1) return;
+
+    const interval = window.setInterval(() => {
+      setIsTransitioning(true);
+      setPreviousSlide(currentSlide);
+      setAnimateText(false);
+
+      setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+
+        requestAnimationFrame(() => {
+          setAnimateText(true);
+        });
+      }, 50);
+
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 1500);
     }, 6000);
-    return () => clearInterval(interval);
-  }, [heroSlides.length]);
+
+    return () => window.clearInterval(interval);
+  }, [currentSlide]);
 
   useEffect(() => {
+    let mounted = true;
+
     const fetchStories = async () => {
       try {
         const response = await fetch(
           `${import.meta.env.VITE_API_URL}/api/stories`,
         );
+
+        if (!response.ok) {
+          throw new Error("Failed to load stories.");
+        }
+
         const data = await response.json();
-        setStories(data.slice(0, 4));
+
+        if (mounted) {
+          setStories(Array.isArray(data) ? data.slice(0, 4) : []);
+        }
       } catch (error) {
-        console.error("Error fetching stories:", error);
+        console.error(error);
+      } finally {
+        if (mounted) {
+          setLoadingStories(false);
+        }
       }
     };
+
     fetchStories();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
+
+  useScrollReveal();
 
   return (
     <div className="home-page">
@@ -72,39 +115,50 @@ const Home = () => {
       {/* HERO SECTION - CAROUSEL */}
       <section className="hero-section">
         <div className="hero-overlay"></div>
+        <Particles count={80} color="rgba(243, 193, 62, 0.15)" />
+
+        <ScrollIndicator />
 
         {/* Background Slides */}
         <div className="hero-slides">
           {heroSlides.map((slide, index) => (
             <div
               key={index}
-              className={`hero-slide ${index === currentSlide ? "active" : ""}`}
+              className={`hero-slide ${
+                index === currentSlide ? "active" : ""
+              } ${
+                index === previousSlide && isTransitioning ? "fade-out" : ""
+              }`}
               style={{ backgroundImage: `url(${slide.image})` }}
             />
           ))}
         </div>
 
         <div className="container hero-content">
-          <div className="hero-text">
+          <div className="hero-text hero-text-animated">
             <div className="hero-text-wrapper">
-              <h1 className="hero-title">
+              <h1 className={`hero-title ${animateText ? "animate" : ""}`}>
                 {heroSlides[currentSlide].title}
                 <br />
-                <span className="highlight">
+                <span
+                  className={`highlight gold-underline ${
+                    animateText ? "animate" : ""
+                  }`}
+                >
                   {heroSlides[currentSlide].highlight}
                 </span>
               </h1>
-              <p className="hero-description">
+              <p className={`hero-description ${animateText ? "animate" : ""}`}>
                 {heroSlides[currentSlide].desc}
               </p>
             </div>
-            <div className="hero-buttons">
+            <div className={`hero-buttons ${animateText ? "animate" : ""}`}>
               <Link to="/causes" className="btn btn-custom btn-primary-custom">
                 Our Causes <ArrowRight size={20} />
               </Link>
               <Link
                 to="/donate"
-                className="btn btn-custom btn-secondary-custom"
+                className="btn btn-custom btn-secondary-custom pulse-donate"
               >
                 Donate Now <Heart size={20} />
               </Link>
@@ -254,48 +308,59 @@ const Home = () => {
             <p>Inspiring stories of transformation and hope</p>
           </div>
           <div className="stories-grid">
-            {stories.length > 0
-              ? stories.map((story) => (
-                  <Link
-                    to={`/story/${story._id}`}
-                    key={story._id}
-                    className="story-card"
-                  >
-                    <div className="story-thumbnail">
-                      {story.videoUrl ? (
-                        <>
-                          <img
-                            src={story.thumbnail || story.image}
-                            alt={story.title}
-                          />
-                          <div className="play-icon">
-                            <PlayCircle size={50} />
-                          </div>
-                        </>
-                      ) : (
+            {loadingStories ? (
+              [1, 2, 3, 4].map((i) => (
+                <div key={i} className="story-card story-card-placeholder">
+                  <div className="story-thumbnail-placeholder"></div>
+
+                  <div className="story-content">
+                    <h3>Loading...</h3>
+                    <p>Please wait...</p>
+                  </div>
+                </div>
+              ))
+            ) : stories.length > 0 ? (
+              stories.map((story) => (
+                <Link
+                  key={story._id}
+                  to={`/story/${story._id}`}
+                  className="story-card"
+                >
+                  <div className="story-thumbnail">
+                    {story.videoUrl ? (
+                      <>
                         <img
-                          src={story.image || "/images/default-story.jpg"}
+                          src={story.thumbnail || story.image}
                           alt={story.title}
                         />
-                      )}
-                    </div>
-                    <div className="story-content">
-                      <h3>{story.title}</h3>
-                      <p>{story.excerpt}</p>
-                      <span className="read-more">Read More →</span>
-                    </div>
-                  </Link>
-                ))
-              : // Placeholder if no stories
-                [1, 2, 3, 4].map((i) => (
-                  <div key={i} className="story-card story-card-placeholder">
-                    <div className="story-thumbnail-placeholder"></div>
-                    <div className="story-content">
-                      <h3>Coming Soon</h3>
-                      <p>Stay tuned for inspiring stories</p>
-                    </div>
+
+                        <div className="play-icon">
+                          <PlayCircle size={50} />
+                        </div>
+                      </>
+                    ) : (
+                      <img
+                        src={story.image || "/images/default-story.jpg"}
+                        alt={story.title}
+                      />
+                    )}
                   </div>
-                ))}
+
+                  <div className="story-content">
+                    <h3>{story.title}</h3>
+                    <p>{story.excerpt}</p>
+
+                    <span className="read-more">Read More →</span>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <div className="stories-empty">
+                <h3>No stories yet</h3>
+
+                <p>Check back soon for inspiring updates.</p>
+              </div>
+            )}
           </div>
           <div className="view-all">
             <Link to="/gallery" className="btn btn-custom btn-outline-custom">

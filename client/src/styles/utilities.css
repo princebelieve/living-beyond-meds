@@ -1,0 +1,47 @@
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-tag {
+
+    display: inline-block;
+
+    padding: 8px 22px;
+
+    border-radius: 999px;
+
+    background: var(--gold);
+
+    color: var(--navy);
+
+    font-size: .85rem;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+}
+
+.brand-heading {
+
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+
+    font-weight: 700;
+
+    line-height: 1.15;
+}
+
+.brand-heading-light {
+
+    color: white;
+}
+
+.page {
+
+    padding-top: 90px;
+}
+
+.text-center {
+
+    text-align: center;
+}

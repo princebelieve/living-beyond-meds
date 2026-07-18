@@ -1,10 +1,9 @@
 //client/src/hooks/useScrollReveal.js
-// src/hooks/useScrollReveal.js
 import { useEffect } from "react";
 
 export default function useScrollReveal() {
   useEffect(() => {
-    const revealElements = document.querySelectorAll(
+    const elements = document.querySelectorAll(
       ".scroll-reveal, .reveal, .reveal-left, .reveal-right, .reveal-scale",
     );
 
@@ -13,19 +12,17 @@ export default function useScrollReveal() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
           }
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+        threshold: 0.15,
       },
     );
 
-    revealElements.forEach((el) => observer.observe(el));
+    elements.forEach((element) => observer.observe(element));
 
-    return () => {
-      revealElements.forEach((el) => observer.unobserve(el));
-    };
+    return () => observer.disconnect();
   }, []);
 }
