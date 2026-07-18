@@ -14,37 +14,15 @@ export default function Contact() {
         <section className="contact-hero">
           <div className="container contact-hero-inner">
             <div className="hero-copy">
-              <img
-                src="/logo.png"
-                alt="Living Beyond Meds logo"
-                className="brand-logo"
-              />
-              <span className="eyebrow">Living Beyond Meds</span>
               <h1>Contact Us</h1>
               <p>
-                Get in touch to learn how you can support widows and vulnerable
-                women through prayer, giving, or partnership.
+                Have questions or want to partner with us? We'd love to hear
+                from you. Reach out and let's make a difference together.
               </p>
-              <div className="hero-actions">
-                <a
-                  href="mailto:info@livingbeyondmeds.com"
-                  className="btn btn-secondary"
-                >
-                  info@livingbeyondmeds.com
-                </a>
-                <a href="tel:+447476088871" className="btn btn-primary">
-                  +44 7476 088871
-                </a>
-              </div>
             </div>
 
             <aside className="hero-card">
-              <img
-                src="/founder.jpg"
-                alt="Founder of Living Beyond Meds"
-                className="founder-photo"
-              />
-              <h2>Contact Details</h2>
+              <h2>Get in Touch</h2>
               <div className="contact-card-row">
                 <Mail size={18} />
                 <div>
@@ -86,73 +64,6 @@ export default function Contact() {
                 </div>
               </div>
             </aside>
-          </div>
-        </section>
-
-        <section className="contact-about">
-          <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow">About Us</span>
-              <h2>Standing Together to Restore Hope</h2>
-            </div>
-            <div className="about-copy">
-              <p>
-                Our work is strengthened through our partnership with The Widows
-                Empowerment Trust, a charity that has played a vital role in
-                Wumi’s own journey of rebuilding and restoration.
-              </p>
-              <p>
-                Together, we are committed to empowering widows, supporting
-                families, and giving voice to women who often feel unseen or
-                unheard.
-              </p>
-              <a href="/about" className="btn btn-primary hero-link">
-                Learn More About Us
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="contact-services">
-          <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow">What We Do</span>
-              <h2>How We Care for Communities</h2>
-            </div>
-            <div className="services-grid">
-              <article className="service-card">
-                <span className="service-number">01</span>
-                <h3>Emotional & Mental Wellbeing Support</h3>
-                <p>
-                  Providing safe, compassionate spaces for women navigating
-                  grief, trauma, and major life transitions.
-                </p>
-              </article>
-              <article className="service-card">
-                <span className="service-number">02</span>
-                <h3>Empowerment & Skills Training</h3>
-                <p>
-                  Workshops and development sessions that build confidence,
-                  resilience, and self-sufficiency.
-                </p>
-              </article>
-              <article className="service-card">
-                <span className="service-number">03</span>
-                <h3>Community Outreach</h3>
-                <p>
-                  Practical support for widows and vulnerable women through
-                  welfare assistance and community engagement.
-                </p>
-              </article>
-              <article className="service-card">
-                <span className="service-number">04</span>
-                <h3>Advocacy & Awareness</h3>
-                <p>
-                  Standing against stigma, isolation, and silence around
-                  widowhood and mental health.
-                </p>
-              </article>
-            </div>
           </div>
         </section>
 

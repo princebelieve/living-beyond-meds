@@ -12,12 +12,43 @@ import {
   ArrowRight,
   ChevronRight,
 } from "lucide-react";
+import useScrollReveal from "../hooks/useScrollReveal";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/Home.css";
 
 const Home = () => {
   const [stories, setStories] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroSlides = [
+    {
+      image: "/hero1.jpg", // Replace with your actual image paths
+      title: "Together, We Rise.",
+      highlight: "Together, We Restore Hope.",
+      desc: "Join Living Beyond Meds in supporting The Widows Empowerment Trust – bringing compassion, dignity, and new beginnings to widows, families, and vulnerable individuals.",
+    },
+    {
+      image: "/hero2.jpg",
+      title: "Empowering Widows.",
+      highlight: "Building Brighter Futures.",
+      desc: "Through skills training, emotional support, and community outreach, we are transforming lives one family at a time.",
+    },
+    {
+      image: "/hero3.jpg",
+      title: "Join the Movement.",
+      highlight: "Be the Change You Seek.",
+      desc: "Your support helps us reach more women in need. Together, we can break the cycle of isolation and despair.",
+    },
+  ];
+
+  // Auto-switch slides
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [heroSlides.length]);
 
   useEffect(() => {
     const fetchStories = async () => {
@@ -38,26 +69,43 @@ const Home = () => {
     <div className="home-page">
       <Navbar />
 
-      {/* HERO SECTION */}
+      {/* HERO SECTION - CAROUSEL */}
       <section className="hero-section">
         <div className="hero-overlay"></div>
+
+        {/* Background Slides */}
+        <div className="hero-slides">
+          {heroSlides.map((slide, index) => (
+            <div
+              key={index}
+              className={`hero-slide ${index === currentSlide ? "active" : ""}`}
+              style={{ backgroundImage: `url(${slide.image})` }}
+            />
+          ))}
+        </div>
+
         <div className="container hero-content">
           <div className="hero-text">
-            <h1 className="hero-title">
-              Together, We Rise.
-              <br />
-              <span className="highlight">Together, We Restore Hope.</span>
-            </h1>
-            <p className="hero-description">
-              Join Living Beyond Meds in supporting The Widows Empowerment Trust
-              – bringing compassion, dignity, and new beginnings to widows,
-              families, and vulnerable individuals.
-            </p>
+            <div className="hero-text-wrapper">
+              <h1 className="hero-title">
+                {heroSlides[currentSlide].title}
+                <br />
+                <span className="highlight">
+                  {heroSlides[currentSlide].highlight}
+                </span>
+              </h1>
+              <p className="hero-description">
+                {heroSlides[currentSlide].desc}
+              </p>
+            </div>
             <div className="hero-buttons">
-              <Link to="/causes" className="btn btn-primary">
+              <Link to="/causes" className="btn btn-custom btn-primary-custom">
                 Our Causes <ArrowRight size={20} />
               </Link>
-              <Link to="/donate" className="btn btn-secondary">
+              <Link
+                to="/donate"
+                className="btn btn-custom btn-secondary-custom"
+              >
                 Donate Now <Heart size={20} />
               </Link>
             </div>
@@ -66,12 +114,14 @@ const Home = () => {
       </section>
 
       {/* ABOUT SECTION */}
-      <section className="about-section">
+      <section className="about-section scroll-reveal">
         <div className="container">
           <div className="about-grid">
             <div className="about-content">
               <span className="section-tag">About Us</span>
-              <h2>Standing Together to Restore Hope</h2>
+              <h2 className="brand-heading">
+                Standing Together to Restore Hope
+              </h2>
               <p>
                 As the Founder and CEO of Living Beyond Meds, it is an honour to
                 support organisations whose mission aligns deeply with my
@@ -90,7 +140,7 @@ const Home = () => {
                   Founder & CEO – Living Beyond Meds
                 </span>
               </div>
-              <Link to="/about" className="btn btn-outline">
+              <Link to="/about" className="btn btn-custom btn-outline-custom">
                 Learn More <ChevronRight size={20} />
               </Link>
             </div>
@@ -106,18 +156,18 @@ const Home = () => {
       </section>
 
       {/* SERVICES SECTION */}
-      <section className="services-section">
+      <section className="services-section scroll-reveal">
         <div className="container">
           <div className="section-header">
             <span className="section-tag">Services</span>
-            <h2>What We Do</h2>
+            <h2 className="brand-heading">What We Do</h2>
             <p>
               Empowering lives through compassionate support and practical
               assistance
             </p>
           </div>
           <div className="services-grid">
-            <div className="service-card">
+            <div className="service-card tilt-card">
               <div className="service-number">01</div>
               <h3>Emotional &amp; Mental Wellbeing Support</h3>
               <p>
@@ -125,7 +175,7 @@ const Home = () => {
                 trauma, and major life transitions.
               </p>
             </div>
-            <div className="service-card">
+            <div className="service-card tilt-card">
               <div className="service-number">02</div>
               <h3>Empowerment &amp; Skills Training</h3>
               <p>
@@ -133,7 +183,7 @@ const Home = () => {
                 resilience, and self-sufficiency.
               </p>
             </div>
-            <div className="service-card">
+            <div className="service-card tilt-card">
               <div className="service-number">03</div>
               <h3>Community Outreach</h3>
               <p>
@@ -141,7 +191,7 @@ const Home = () => {
                 welfare assistance and community engagement.
               </p>
             </div>
-            <div className="service-card">
+            <div className="service-card tilt-card">
               <div className="service-number">04</div>
               <h3>Advocacy &amp; Awareness</h3>
               <p>
@@ -154,11 +204,13 @@ const Home = () => {
       </section>
 
       {/* STATS SECTION */}
-      <section className="stats-section">
+      <section className="stats-section scroll-reveal">
         <div className="container">
           <div className="section-header light">
             <span className="section-tag gold">Some Fun Fact</span>
-            <h2>Thank To The Results Achieved With You!</h2>
+            <h2 className="brand-heading-light">
+              Thank To The Results Achieved With You!
+            </h2>
           </div>
           <div className="stats-grid">
             <div className="stat-item">
@@ -194,11 +246,11 @@ const Home = () => {
       </section>
 
       {/* STORIES/VIDEOS SECTION */}
-      <section className="stories-section">
+      <section className="stories-section scroll-reveal">
         <div className="container">
           <div className="section-header">
             <span className="section-tag">Video Gallery</span>
-            <h2>Latest Stories &amp; Events</h2>
+            <h2 className="brand-heading">Latest Stories &amp; Events</h2>
             <p>Inspiring stories of transformation and hope</p>
           </div>
           <div className="stories-grid">
@@ -246,7 +298,7 @@ const Home = () => {
                 ))}
           </div>
           <div className="view-all">
-            <Link to="/gallery" className="btn btn-outline">
+            <Link to="/gallery" className="btn btn-custom btn-outline-custom">
               View All Stories
             </Link>
           </div>
@@ -254,27 +306,33 @@ const Home = () => {
       </section>
 
       {/* CTA / JOIN SECTION */}
-      <section className="cta-section">
+      <section className="cta-section scroll-reveal">
         <div className="cta-overlay"></div>
         <div className="container cta-content">
-          <h2>Join In Worldwide Team</h2>
+          <h2 className="brand-heading-light">Join In Worldwide Team</h2>
           <p>Be part of something bigger. Join us in making a difference.</p>
           <div className="cta-form">
-            <input
-              type="text"
-              placeholder="Enter User Name"
-              className="cta-input"
-            />
-            <input
-              type="email"
-              placeholder="Enter Email Address"
-              className="cta-input"
-            />
-            <input
-              type="tel"
-              placeholder="Contact Number"
-              className="cta-input"
-            />
+            <div className="input-group">
+              <input
+                type="text"
+                placeholder="Enter User Name"
+                className="cta-input"
+              />
+            </div>
+            <div className="input-group">
+              <input
+                type="email"
+                placeholder="Enter Email Address"
+                className="cta-input"
+              />
+            </div>
+            <div className="input-group">
+              <input
+                type="tel"
+                placeholder="Contact Number"
+                className="cta-input"
+              />
+            </div>
             <button className="cta-submit">Join With Us</button>
           </div>
           <div className="cta-phone">

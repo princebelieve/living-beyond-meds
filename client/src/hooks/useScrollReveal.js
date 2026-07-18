@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export default function useScrollReveal() {
   useEffect(() => {
     const revealElements = document.querySelectorAll(
-      ".reveal, .reveal-left, .reveal-right, .reveal-scale",
+      ".scroll-reveal, .reveal, .reveal-left, .reveal-right, .reveal-scale",
     );
 
     const observer = new IntersectionObserver(

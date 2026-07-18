@@ -16,9 +16,20 @@ export default function About() {
               <p>
                 Living Beyond Meds is an organisation birthed from personal
                 transformation, deep faith, and a calling to support women and
-                vulnerable individuals walking through some of life’s most
+                vulnerable individuals walking through some of life's most
                 difficult journeys.
               </p>
+              <div className="about-founder">
+                <img
+                  src="/founder.jpg"
+                  alt="Founder of Living Beyond Meds"
+                  className="founder-photo"
+                />
+                <div className="founder-info">
+                  <h3>Wumi Adebayo</h3>
+                  <p>Founder & CEO</p>
+                </div>
+              </div>
             </div>
 
             <div className="about-image-wrap">
@@ -30,11 +41,11 @@ export default function About() {
         <section className="section-alt">
           <div className="container about-story">
             <div className="story-card">
-              <h2 className="title">About Us</h2>
+              <h2 className="title">Our Story</h2>
               <p>
                 Our work is strengthened through our partnership with The Widows
                 Empowerment Trust, a charity that has played a vital role in
-                Wumi’s own journey of rebuilding and restoration.
+                Wumi's own journey of rebuilding and restoration.
               </p>
               <p>
                 Together, we are committed to empowering widows, supporting

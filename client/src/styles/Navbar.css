@@ -1,5 +1,5 @@
 /* ========================================
-   NAVBAR.CSS
+   NAVBAR.CSS - Updated to always visible
    ======================================== */
 
 .navbar {
@@ -8,7 +8,9 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    transition: all var(--transition-base);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
 }
 
 .navbar-scrolled {
@@ -18,10 +20,7 @@
     box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
 }
 
-.navbar-hidden {
-    transform: translateY(-100%);
-}
-
+/* --- Top Bar --- */
 .navbar-top {
     background: var(--navy);
     color: var(--white);
@@ -59,7 +58,7 @@
     color: var(--gold);
 }
 
-.navbar-donate-btn {
+.navbar-donate .donate-btn {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -74,11 +73,12 @@
     box-shadow: var(--shadow-gold);
 }
 
-.navbar-donate-btn:hover {
+.navbar-donate .donate-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 0 32px rgba(243, 193, 62, 0.5);
 }
 
+/* --- Main Navbar --- */
 .navbar-main {
     padding: 10px 0;
     background: transparent;
@@ -165,6 +165,7 @@
     color: var(--navy) !important;
     font-weight: 600 !important;
     box-shadow: var(--shadow-gold);
+    transition: all var(--transition-base);
 }
 
 .login-link::after {
@@ -188,21 +189,6 @@
 
 .mobile-menu-btn:hover {
     color: var(--navy);
-}
-
-.mobile-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    opacity: 0;
-    visibility: hidden;
-    transition: all var(--transition-base);
-}
-
-.mobile-overlay.active {
-    opacity: 1;
-    visibility: visible;
 }
 
 @media (max-width: 1024px) {

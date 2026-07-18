@@ -15,7 +15,10 @@ const Navbar = () => {
   const menuRef = useRef(null);
   const toggleRef = useRef(null);
   const clickRefs = useRef([]);
-  clickRefs.current = [menuRef.current, toggleRef.current];
+
+  useEffect(() => {
+    clickRefs.current = [menuRef.current, toggleRef.current];
+  }, []);
 
   useClickOutside(clickRefs, () => {
     if (isOpen) setIsOpen(false);
