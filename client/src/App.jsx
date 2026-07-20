@@ -18,40 +18,45 @@ import ResetPassword from "./pages/ResetPassword";
 import AdminProducts from "./pages/AdminProducts";
 import RequireAdmin from "./components/RequireAdmin.jsx";
 import "./index.css";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   return (
-    <Routes>
-      {/* Main Pages */}
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/donate" element={<Donate />} />
-      <Route path="/causes" element={<Causes />} />
-      <Route path="/gallery" element={<Gallery />} />
-      <Route path="/story/:id" element={<StoryDetails />} />
+    <>
+      <ScrollToTop />
 
-      {/* E-commerce */}
-      <Route path="/collection" element={<Collection />} />
-      <Route path="/product/:id" element={<ProductDetails />} />
-      <Route path="/success" element={<Success />} />
-      <Route path="/cancel" element={<Cancel />} />
+      <Routes>
+        {/* Main Pages */}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/donate" element={<Donate />} />
+        <Route path="/causes" element={<Causes />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/story/:id" element={<StoryDetails />} />
 
-      {/* Auth */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
+        {/* E-commerce */}
+        <Route path="/collection" element={<Collection />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/cancel" element={<Cancel />} />
 
-      {/* Admin */}
-      <Route
-        path="/admin/products"
-        element={
-          <RequireAdmin>
-            <AdminProducts />
-          </RequireAdmin>
-        }
-      />
-    </Routes>
+        {/* Auth */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
+        {/* Admin */}
+        <Route
+          path="/admin/products"
+          element={
+            <RequireAdmin>
+              <AdminProducts />
+            </RequireAdmin>
+          }
+        />
+      </Routes>
+    </>
   );
 }

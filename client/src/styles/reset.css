@@ -12,9 +12,10 @@ html {
 
 body {
     font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
     background: var(--off-white);
     color: var(--navy);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }

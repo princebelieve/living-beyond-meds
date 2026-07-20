@@ -200,9 +200,9 @@ const Home = () => {
             </div>
             <div className="about-image">
               <img
-                src="/images/about-placeholder.jpg"
+                src="/founder.jpg"
                 alt="About Living Beyond Meds"
-                className="founder.jpg"
+                className="about-image"
               />
             </div>
           </div>

@@ -1,3 +1,4 @@
+//client/src/components/Footer.jsx
 import { Link } from "react-router-dom";
 import { Heart, Phone, Mail, MapPin } from "lucide-react";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
