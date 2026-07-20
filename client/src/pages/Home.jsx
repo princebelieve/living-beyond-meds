@@ -139,7 +139,7 @@ const Home = () => {
             <div className="hero-text-wrapper">
               <h1 className={`hero-title ${animateText ? "animate" : ""}`}>
                 {heroSlides[currentSlide].title}
-                <br />
+
                 <span
                   className={`highlight gold-underline ${
                     animateText ? "animate" : ""

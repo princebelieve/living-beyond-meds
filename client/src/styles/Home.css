@@ -79,7 +79,8 @@
 /* --- Hero Section with Carousel --- */
 .home-page .hero-section {
     position: relative;
-    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: 90px;
     display: flex;
     align-items: center;
     color: var(--white);
@@ -237,7 +238,7 @@
 .home-page .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 680px;
+    max-width: 980px;
     margin: 0 auto;
     padding: 120px 0;
     text-align: center;
