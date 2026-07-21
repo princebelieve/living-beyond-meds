@@ -1,183 +1,243 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Heart, Users, BookOpen, Globe, ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  PlayCircle,
+  Image as ImageIcon,
+  ShoppingBag,
+} from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import "../styles/Causes.css";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 const Causes = () => {
-  const causes = [
-    {
-      id: 1,
-      title: "Widows Empowerment",
-      description:
-        "Providing financial support, counseling, and community for widows rebuilding their lives.",
-      icon: Heart,
-      color: "#16664d",
-    },
-    {
-      id: 2,
-      title: "Mental Health Support",
-      description:
-        "Offering professional counseling and support groups for those dealing with grief and trauma.",
-      icon: Users,
-      color: "#0f2f44",
-    },
-    {
-      id: 3,
-      title: "Skills Training",
-      description:
-        "Empowering women with practical skills for financial independence and self-sufficiency.",
-      icon: BookOpen,
-      color: "#f3c13e",
-    },
-    {
-      id: 4,
-      title: "Community Outreach",
-      description:
-        "Reaching vulnerable communities with essential support and resources.",
-      icon: Globe,
-      color: "#0f2f44",
-    },
-  ];
+  useScrollReveal();
+  const [blogs, setBlogs] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch blogs (stories with type: "blog")
+        const storiesRes = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/stories`,
+        );
+        const storiesData = await storiesRes.json();
+        const blogPosts = storiesData.filter((story) => story.type === "blog");
+        setBlogs(blogPosts);
+
+        // Fetch products (for Purchase Now section)
+        const productsRes = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/products`,
+        );
+        const productsData = await productsRes.json();
+        setProducts(productsData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
-    <div className="causes-page" style={{ paddingTop: "120px" }}>
+    <div className="causes-page">
       <Navbar />
 
-      <section
-        style={{
-          background: "linear-gradient(135deg, #0f2f44 0%, #16664d 100%)",
-          color: "white",
-          padding: "60px 0",
-          textAlign: "center",
-        }}
-      >
-        <div className="container">
-          <h1 style={{ fontSize: "3rem", marginBottom: "16px" }}>Our Causes</h1>
-          <p style={{ fontSize: "1.2rem", opacity: 0.9 }}>
-            Every cause we support brings hope and dignity to those who need it
-            most.
-          </p>
-        </div>
-      </section>
-
-      <section style={{ padding: "60px 0", background: "#F8F4F0" }}>
-        <div className="container">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "30px",
-              maxWidth: "1000px",
-              margin: "0 auto",
-            }}
-          >
-            {causes.map((cause) => {
-              const Icon = cause.icon;
-              return (
-                <div
-                  key={cause.id}
-                  style={{
-                    background: "white",
-                    padding: "40px",
-                    borderRadius: "16px",
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-                    textAlign: "center",
-                    transition: "transform 0.3s ease",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.transform = "translateY(-8px)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.transform = "translateY(0)")
-                  }
+      {/* Hero Section */}
+      <section className="causes-hero">
+        <div
+          className="causes-hero-background"
+          style={{
+            backgroundImage: "url('/images/causes-hero.jpg')",
+          }}
+        >
+          <div className="causes-hero-overlay">
+            <div className="container">
+              <div className="causes-hero-content">
+                <h1>
+                  Restoring Dignity.
+                  <br />
+                  Rebuilding Lives.
+                  <br />
+                  <span className="highlight">Renewing Hope.</span>
+                </h1>
+                <p className="hero-description">
+                  At Living Beyond Meds, our cause is simple yet powerful:
+                  <br />
+                  to ensure no widow, no woman, and no vulnerable individual
+                  walks through pain, grief, or transition alone.
+                </p>
+                <p className="hero-description">
+                  Our partnership with The Widows Empowerment Trust is a
+                  reflection of this calling—a shared commitment to uplift,
+                  empower, and restore those who have been overlooked, unheard,
+                  or unsupported in their most vulnerable moments.
+                </p>
+                <p
+                  className="hero-description"
+                  style={{ fontWeight: "600", color: "var(--gold)" }}
                 >
-                  <div
-                    style={{
-                      width: "80px",
-                      height: "80px",
-                      borderRadius: "50%",
-                      background: cause.color,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      margin: "0 auto 20px",
-                    }}
-                  >
-                    <Icon size={40} color="white" />
-                  </div>
-                  <h3
-                    style={{
-                      fontSize: "1.4rem",
-                      marginBottom: "12px",
-                      color: "#1A1A1A",
-                    }}
-                  >
-                    {cause.title}
-                  </h3>
-                  <p
-                    style={{
-                      color: "#666",
-                      lineHeight: "1.8",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    {cause.description}
-                  </p>
-                  <Link
-                    to="/donate"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      color: cause.color,
-                      fontWeight: "600",
-                      textDecoration: "none",
-                    }}
-                  >
-                    Support This Cause <ArrowRight size={18} />
-                  </Link>
-                </div>
-              );
-            })}
+                  We are here to offer compassion, dignity, and opportunities
+                  for renewal, because every woman deserves to be seen, heard,
+                  and supported through her journey.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section
-        style={{ padding: "60px 0", background: "white", textAlign: "center" }}
-      >
+      {/* Personal Story Section */}
+      <section className="personal-story-section">
         <div className="container">
-          <h2 style={{ fontSize: "2.5rem", marginBottom: "16px" }}>
-            Make a Difference Today
-          </h2>
-          <p
-            style={{
-              fontSize: "1.1rem",
-              color: "#666",
-              maxWidth: "600px",
-              margin: "0 auto 32px",
-            }}
-          >
-            Your support helps us continue our mission of bringing compassion
-            and dignity to widows and vulnerable individuals.
-          </p>
-          <Link
-            to="/donate"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              background: "#16664d",
-              color: "#FFFFFF",
-              padding: "16px 40px",
-              borderRadius: "50px",
-              fontWeight: "700",
-              textDecoration: "none",
-              fontSize: "1.1rem",
-            }}
-          >
-            <Heart size={20} /> Donate Now
-          </Link>
+          <div className="personal-story-content">
+            <span className="section-tag">Our Foundation</span>
+            <h2>A Cause Rooted in Real Experience</h2>
+            <p className="personal-story-intro">
+              This mission is deeply personal.
+            </p>
+            <blockquote className="personal-story-quote">
+              "Living Beyond Meds was birthed from my own journey through
+              stigma, emotional pain, mental health challenges, and immigration
+              struggles. In the seasons where hope seemed distant, organisations
+              like The Widows Empowerment Trust became a source of
+              strength—providing listening ears, encouragement, and a reminder
+              that my life still had meaning."
+            </blockquote>
+            <p className="personal-story-conclusion">
+              Today, I stand restored, and it is now my purpose to give that
+              same hope to others.
+            </p>
+            <p
+              className="personal-story-conclusion"
+              style={{ fontWeight: "600", color: "var(--deep-green)" }}
+            >
+              Our cause is not theoretical. It is lived. It is felt. It is real.
+            </p>
+            <div style={{ textAlign: "center", marginTop: "40px" }}>
+              <Link to="/donate" className="btn-support">
+                Support Our Cause <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Photo Showcase - BLOGS (stories with type: "blog") */}
+      <section className="photo-showcase-section">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-tag">Photo Showcase</span>
+            <h2>Stories in Pictures</h2>
+            <p>
+              Real moments from the lives we've touched and the communities we
+              serve.
+            </p>
+          </div>
+
+          {loading ? (
+            <div style={{ textAlign: "center", padding: "40px 0" }}>
+              <p>Loading photos...</p>
+            </div>
+          ) : blogs.length === 0 ? (
+            <div style={{ textAlign: "center", padding: "40px 0" }}>
+              <p>No photos available yet. Check back soon!</p>
+            </div>
+          ) : (
+            <div className="photo-grid">
+              {blogs.map((blog) => (
+                <Link
+                  to={`/story/${blog._id}`}
+                  key={blog._id}
+                  className="photo-card"
+                >
+                  <div className="photo-image">
+                    {blog.image ? (
+                      <img src={blog.image} alt={blog.title} />
+                    ) : (
+                      <div className="image-placeholder">
+                        <ImageIcon size={40} color="#999" />
+                      </div>
+                    )}
+                    {blog.videoUrl && (
+                      <div className="video-indicator">
+                        <PlayCircle size={30} color="white" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="photo-content">
+                    <h3>{blog.title}</h3>
+                    <p>{blog.excerpt}</p>
+                    <span className="read-more">
+                      Read More <ArrowRight size={16} />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          <div style={{ textAlign: "center", marginTop: "40px" }}>
+            <Link to="/gallery" className="btn-view-gallery">
+              View Full Gallery
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Purchase Now - PRODUCTS */}
+      <section className="purchase-section">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-tag">Shop</span>
+            <h2>Purchase Now</h2>
+            <p>
+              Support our cause by purchasing our products. Every purchase helps
+              us continue our mission.
+            </p>
+          </div>
+
+          {loading ? (
+            <div style={{ textAlign: "center", padding: "40px 0" }}>
+              <p>Loading products...</p>
+            </div>
+          ) : products.length === 0 ? (
+            <div style={{ textAlign: "center", padding: "40px 0" }}>
+              <p>No products available yet. Check back soon!</p>
+            </div>
+          ) : (
+            <div className="products-grid">
+              {products.slice(0, 4).map((product) => (
+                <div key={product._id} className="product-card">
+                  <div className="product-image">
+                    <img src={product.image} alt={product.name} />
+                  </div>
+                  <div className="product-content">
+                    <h3>{product.name}</h3>
+                    <p className="product-price">
+                      £{product.price.toLocaleString()}
+                    </p>
+                    <Link
+                      to={`/product/${product._id}`}
+                      className="btn-purchase"
+                    >
+                      <ShoppingBag size={18} /> View Product
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div style={{ textAlign: "center", marginTop: "40px" }}>
+            <Link to="/collection" className="btn-view-all-products">
+              View All Products
+            </Link>
+          </div>
         </div>
       </section>
 

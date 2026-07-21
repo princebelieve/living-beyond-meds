@@ -1,0 +1,634 @@
+/* ========================================
+   CAUSES.CSS - Only Causes-specific styles
+   No duplication with global CSS
+   ======================================== */
+
+/* --- Causes Page Container --- */
+.causes-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.causes-page>*:last-child {
+  margin-top: auto;
+}
+
+/* --- Hero Section with Image --- */
+.causes-page .causes-hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.causes-page .causes-hero-background {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.causes-page .causes-hero-overlay {
+  background: rgba(10, 26, 46, 0.88);
+  width: 100%;
+  padding: 140px 0 80px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.causes-page .causes-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Hero badge - overrides global .section-tag */
+.causes-page .causes-hero-badge {
+  display: inline-block;
+  padding: 8px 24px;
+  background: rgba(243, 193, 62, 0.15);
+  border: 1px solid rgba(243, 193, 62, 0.3);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.causes-page .causes-hero h1 .highlight {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.1em;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.causes-page .hero-personal-story {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.3s forwards;
+}
+
+.causes-page .hero-personal-story.highlight-text {
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.causes-page .hero-stats {
+  display: flex;
+  gap: 60px;
+  margin-top: 40px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.6s forwards;
+}
+
+.causes-page .hero-stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--gold);
+  display: block;
+  line-height: 1.2;
+}
+
+.causes-page .hero-stat-label {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.5px;
+}
+
+/* --- Personal Story Section --- */
+.causes-page .personal-story-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.causes-page .personal-story-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.causes-page .personal-story-content h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 30px;
+}
+
+.causes-page .personal-story-quote {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--deep-green);
+  font-style: italic;
+  margin: 30px 0 40px;
+  padding: 30px 40px;
+  border-left: 4px solid var(--gold);
+  background: var(--off-white);
+  border-radius: 8px;
+  text-align: left;
+}
+
+.causes-page .personal-story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  text-align: left;
+  margin-top: 40px;
+  align-items: center;
+}
+
+.causes-page .story-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--gray-600);
+  margin-bottom: 20px;
+}
+
+.causes-page .story-image-placeholder {
+  background: var(--gray-200);
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 300px;
+}
+
+.causes-page .story-image-placeholder img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* --- Causes Grid Section --- */
+.causes-page .causes-grid-section {
+  padding: 100px 0;
+  background: var(--off-white);
+}
+
+.causes-page .causes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.causes-page .cause-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 40px 35px;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.causes-page .cause-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.causes-page .cause-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--deep-green));
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.causes-page .cause-card:hover::before {
+  transform: scaleX(1);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.causes-page .cause-card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-xl);
+}
+
+.causes-page .cause-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.causes-page .cause-card:hover .cause-icon-wrapper {
+  transform: scale(1.05) rotate(-5deg);
+}
+
+.causes-page .cause-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.causes-page .cause-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--gray-600);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.causes-page .cause-stats {
+  text-align: center;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+}
+
+.causes-page .cause-stats .number {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.causes-page .cause-stats .label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--gray-600);
+}
+
+.causes-page .cause-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  padding: 8px 0;
+  position: relative;
+}
+
+.causes-page .cause-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.causes-page .cause-link:hover::after {
+  width: 100%;
+}
+
+.causes-page .cause-link svg {
+  transition: transform var(--transition-base);
+}
+
+.causes-page .cause-link:hover svg {
+  transform: translateX(6px);
+}
+
+/* --- Featured Stories Section --- */
+.causes-page .featured-stories-section {
+  padding: 80px 0;
+  background: var(--off-white);
+}
+
+.causes-page .featured-stories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.causes-page .featured-story-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.causes-page .featured-story-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.causes-page .featured-story-image {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  background: var(--gray-200);
+}
+
+.causes-page .featured-story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.causes-page .image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: var(--gray-300);
+}
+
+.causes-page .video-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.causes-page .story-type-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #8b1a4a;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.causes-page .featured-story-content {
+  padding: 20px;
+}
+
+.causes-page .featured-story-content h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--gray-900);
+}
+
+.causes-page .featured-story-content p {
+  color: var(--gray-600);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.causes-page .read-more {
+  color: var(--deep-green);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* --- CTA Section --- */
+.causes-page .cta-section {
+  padding: 100px 0;
+  background: var(--white);
+  text-align: center;
+}
+
+.causes-page .cta-content h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+
+.causes-page .cta-content p {
+  font-size: 1.1rem;
+  color: var(--gray-600);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.8;
+}
+
+.causes-page .cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* --- Buttons (Causes-specific) --- */
+.causes-page .btn-custom {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 40px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  border: none;
+  cursor: pointer;
+}
+
+.causes-page .btn-primary-custom {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.causes-page .btn-primary-custom:hover {
+  background: var(--gold-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-gold);
+}
+
+.causes-page .btn-outline-custom {
+  background: transparent;
+  color: var(--navy);
+  border: 2px solid var(--navy);
+}
+
+.causes-page .btn-outline-custom:hover {
+  background: var(--navy);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.causes-page .pulse-donate {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .causes-page .causes-grid {
+    gap: 24px;
+    padding: 0 20px;
+  }
+
+  .causes-page .featured-stories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .causes-page .causes-hero-background {
+    background-attachment: scroll !important;
+  }
+
+  .causes-page .causes-hero-overlay {
+    padding: 120px 0 60px;
+    min-height: auto;
+  }
+
+  .causes-page .causes-hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .causes-page .hero-personal-story {
+    font-size: 1rem;
+  }
+
+  .causes-page .hero-personal-story.highlight-text {
+    font-size: 1.1rem;
+  }
+
+  .causes-page .causes-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 16px;
+  }
+
+  .causes-page .cause-card {
+    padding: 30px 24px;
+  }
+
+  .causes-page .hero-stats {
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .causes-page .hero-stat-number {
+    font-size: 1.5rem;
+  }
+
+  .causes-page .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .causes-page .cta-buttons .btn-custom {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+
+  .causes-page .personal-story-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .causes-page .personal-story-quote {
+    font-size: 1.5rem;
+    padding: 20px;
+  }
+
+  .causes-page .featured-stories-grid {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+  }
+
+  .causes-page .personal-story-content h2 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .causes-page .causes-hero-overlay {
+    padding: 100px 0 40px;
+  }
+
+  .causes-page .causes-hero h1 {
+    font-size: 2rem;
+  }
+
+  .causes-page .cause-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .causes-page .hero-stats {
+    gap: 16px;
+  }
+
+  .causes-page .hero-stat {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .causes-page .featured-story-image {
+    height: 180px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .causes-page .causes-grid {
+    gap: 40px;
+  }
+
+  .causes-page .cause-card {
+    padding: 50px 45px;
+  }
+}
+
+/* --- View All Button --- */
+.causes-page .btn-view-all {
+  display: inline-block;
+  padding: 14px 40px;
+  background: var(--deep-green);
+  color: var(--white);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.causes-page .btn-view-all:hover {
+  background: var(--deep-green-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-green);
+}

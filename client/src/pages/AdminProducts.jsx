@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar";
 import ProductForm from "../components/ProductForm";
 import StoryForm from "../components/StoryForm";
 import { getToken } from "../utils/auth";
-import { createStory, updateStory, deleteStory } from "../services/api";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
