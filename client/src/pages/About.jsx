@@ -1,14 +1,16 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import useScrollReveal from "../hooks/useScrollReveal";
 import "../styles/About.css";
 
 export default function About() {
+  useScrollReveal();
   return (
     <>
       <Navbar />
 
       <main className="about-page">
-        <section className="about-hero">
+        <section className="about-hero scroll-reveal">
           <div className="container about-hero-inner">
             <div className="about-copy">
               <span className="eyebrow">About Living Beyond Meds</span>
@@ -19,6 +21,14 @@ export default function About() {
                 vulnerable individuals walking through some of life's most
                 difficult journeys.
               </p>
+              <div className="about-hero-actions">
+                <a href="https://wa.me/447476088871?text=Hello%2C%20I%20would%20love%20to%20learn%20more%20about%20your%20work." className="about-cta about-cta-primary" target="_blank" rel="noreferrer">
+                  Chat on WhatsApp
+                </a>
+                <a href="/contact" className="about-cta about-cta-ghost">
+                  Contact Us
+                </a>
+              </div>
               <div className="about-founder">
                 <img
                   src="/founder.jpg"
@@ -38,7 +48,7 @@ export default function About() {
           </div>
         </section>
 
-        <section className="section-alt">
+        <section className="section-alt scroll-reveal">
           <div className="container about-story">
             <div className="story-card">
               <h2 className="title">Our Story</h2>
@@ -56,7 +66,7 @@ export default function About() {
               </p>
             </div>
 
-            <div className="story-card">
+            <div className="story-card story-card-accent">
               <h2 className="title">Our Promise</h2>
               <ul className="promise-list">
                 <li>Emotional & Mental Wellbeing Support</li>

@@ -3,7 +3,7 @@
    ======================================== */
 
 .products-page {
-    padding-top: 80px;
+    padding-top: clamp(100px, 12vw, 140px);
     background: var(--off-white);
 }
 
@@ -120,7 +120,7 @@
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 48px;
-    padding: 40px 0;
+    padding: 20px 0 40px;
 }
 
 .product-detail-image {

@@ -3,15 +3,17 @@ import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import useScrollReveal from "../hooks/useScrollReveal";
 import "../styles/Contact.css";
 
 export default function Contact() {
+  useScrollReveal();
   return (
     <>
       <Navbar />
 
       <main className="contact-page">
-        <section className="contact-hero">
+        <section className="contact-hero scroll-reveal">
           <div className="container contact-hero-inner">
             <div className="hero-copy">
               <h1>Contact Us</h1>
@@ -67,7 +69,7 @@ export default function Contact() {
           </div>
         </section>
 
-        <section className="contact-map">
+        <section className="contact-map scroll-reveal">
           <div className="container">
             <div className="section-heading">
               <span className="eyebrow">Our Location</span>

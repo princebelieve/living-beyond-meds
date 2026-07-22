@@ -44,8 +44,9 @@ export default function Register() {
   return (
     <>
       <Navbar />
-      <div className="form">
-        <h1>Join In Worldwide Team</h1>
+      <div className="auth-page">
+        <div className="form">
+          <h1>Join In Worldwide Team</h1>
         <p className="muted" style={{ marginBottom: 20 }}>
           Be part of something bigger. Join us in making a difference.
         </p>
@@ -100,6 +101,7 @@ export default function Register() {
             Login here
           </Link>
         </p>
+        </div>
       </div>
     </>
   );

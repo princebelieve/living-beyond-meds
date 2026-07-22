@@ -59,18 +59,40 @@
     color: var(--gold);
 }
 
-.navbar-donate .donate-btn {
+.navbar-actions {
     display: flex;
     align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.navbar-whatsapp,
+.navbar-donate .donate-btn {
+    display: inline-flex;
+    align-items: center;
     gap: 6px;
-    background: var(--gold);
-    color: var(--navy);
-    padding: 5px 16px;
+    padding: 5px 14px;
     border-radius: var(--radius-full);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.8rem;
     transition: all var(--transition-base);
+}
+
+.navbar-whatsapp {
+    background: rgba(37, 211, 102, 0.16);
+    color: #ffffff;
+    border: 1px solid rgba(37, 211, 102, 0.2);
+}
+
+.navbar-whatsapp:hover {
+    transform: translateY(-1px);
+    background: rgba(37, 211, 102, 0.24);
+}
+
+.navbar-donate .donate-btn {
+    background: var(--gold);
+    color: var(--navy);
     box-shadow: var(--shadow-gold);
 }
 

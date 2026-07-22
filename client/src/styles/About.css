@@ -3,7 +3,7 @@
    ======================================== */
 
 .about-page {
-    padding-top: 80px;
+    padding-top: clamp(100px, 12vw, 140px);
     background: var(--off-white);
 }
 
@@ -54,6 +54,40 @@
     line-height: 1.8;
     font-size: 1.05rem;
     color: rgba(255, 255, 255, 0.88);
+}
+
+.about-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.about-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-decoration: none;
+}
+
+.about-cta:hover {
+    transform: translateY(-2px);
+}
+
+.about-cta-primary {
+    background: var(--gold);
+    color: var(--navy);
+    box-shadow: 0 12px 28px rgba(243, 193, 62, 0.24);
+}
+
+.about-cta-ghost {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 /* New founder styles */
@@ -131,6 +165,10 @@
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
 }
 
+.about-story .story-card-accent {
+    background: linear-gradient(135deg, rgba(22, 102, 77, 0.95), rgba(15, 47, 68, 0.98));
+}
+
 .about-story .story-card h2 {
     color: var(--gold);
     margin-bottom: 18px;
@@ -188,6 +226,15 @@
     transform: translateY(-6px);
     box-shadow: var(--shadow-xl);
     border-color: var(--gold);
+}
+
+.values-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.values-header .title {
+    color: var(--navy);
 }
 
 .service-grid .service-card h3 {

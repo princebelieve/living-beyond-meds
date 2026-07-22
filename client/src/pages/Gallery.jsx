@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { PlayCircle, Image as ImageIcon } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 const Gallery = () => {
+  useScrollReveal();
   const [stories, setStories] = useState([]);
   const [filter, setFilter] = useState("all");
 
@@ -33,6 +35,7 @@ const Gallery = () => {
       <Navbar />
 
       <section
+        className="scroll-reveal"
         style={{
           background: "linear-gradient(135deg, #0f2f44 0%, #16664d 100%)",
           color: "white",
@@ -48,7 +51,7 @@ const Gallery = () => {
         </div>
       </section>
 
-      <section style={{ padding: "40px 0", background: "#F8F4F0" }}>
+      <section className="scroll-reveal" style={{ padding: "40px 0", background: "#F8F4F0" }}>
         <div className="container">
           <div
             style={{

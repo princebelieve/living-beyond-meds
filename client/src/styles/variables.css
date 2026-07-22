@@ -48,4 +48,5 @@
 
     --container-max: 1100px;
     --container-padding: 1.5rem;
+    --page-top-offset: clamp(150px, 18vw, 220px);
 }

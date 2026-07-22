@@ -36,8 +36,9 @@ export default function ForgotPassword() {
     <>
       <Navbar />
 
-      <div className="form">
-        <h1>Forgot Password</h1>
+      <div className="auth-page">
+        <div className="form">
+          <h1>Forgot Password</h1>
 
         <p>Enter your email and we’ll send you a reset link.</p>
 
@@ -69,6 +70,7 @@ export default function ForgotPassword() {
           <Link to="/login" style={{ color: "var(--gold)" }}>
             Back to Login
           </Link>
+        </div>
         </div>
       </div>
     </>

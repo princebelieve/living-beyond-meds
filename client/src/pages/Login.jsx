@@ -55,8 +55,9 @@ export default function Login() {
     <>
       <Navbar />
 
-      <div className="form">
-        <h1>Welcome Back</h1>
+      <div className="auth-page">
+        <div className="form">
+          <h1>Welcome Back</h1>
         <p className="muted" style={{ marginBottom: 20 }}>
           Be part of something bigger. Log in to continue supporting our
           worldwide mission.
@@ -104,6 +105,7 @@ export default function Login() {
             Register here
           </Link>
         </p>
+        </div>
       </div>
     </>
   );

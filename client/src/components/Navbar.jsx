@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, Phone, Mail, Heart } from "lucide-react";
+import { Menu, X, Phone, Mail, Heart, MessageCircle } from "lucide-react";
 import useClickOutside from "../hooks/useClickOutside";
 import "../styles/Navbar.css";
 
@@ -59,7 +59,15 @@ const Navbar = () => {
                 <Phone size={16} /> +447476088871
               </a>
             </div>
-            <div className="navbar-donate">
+            <div className="navbar-actions navbar-donate">
+              <a
+                href="https://wa.me/447476088871?text=Hello%2C%20I%20would%20love%20to%20learn%20more%20about%20your%20work."
+                target="_blank"
+                rel="noreferrer"
+                className="navbar-whatsapp"
+              >
+                <MessageCircle size={16} /> WhatsApp
+              </a>
               <Link to="/donate" className="donate-btn">
                 <Heart size={16} /> Donate
               </Link>

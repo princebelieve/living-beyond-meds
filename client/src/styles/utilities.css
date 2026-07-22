@@ -36,9 +36,14 @@
     color: white;
 }
 
-.page {
-
-    padding-top: 90px;
+.page,
+.main-page,
+.auth-page,
+.about-page,
+.donate-page,
+.products-page,
+.contact-page {
+    padding-top: var(--page-top-offset);
 }
 
 .text-center {

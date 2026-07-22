@@ -13,10 +13,10 @@
 .auth-page {
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     background: linear-gradient(135deg, var(--auth-bg) 0%, #ffffff 100%);
-    padding: clamp(120px, 14vw, 170px) 20px 40px;
+    padding: calc(var(--page-top-offset) + 10px) 20px 40px;
     box-sizing: border-box;
 }
 

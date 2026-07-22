@@ -48,8 +48,9 @@ export default function ResetPassword() {
     <>
       <Navbar />
 
-      <div className="form">
-        <h2>Reset Password</h2>
+      <div className="auth-page">
+        <div className="form">
+          <h2>Reset Password</h2>
 
         <p className="muted" style={{ marginBottom: 20 }}>
           Enter your new password below.
@@ -75,6 +76,7 @@ export default function ResetPassword() {
             {loading ? "Resetting..." : "Reset Password"}
           </button>
         </form>
+        </div>
       </div>
     </>
   );

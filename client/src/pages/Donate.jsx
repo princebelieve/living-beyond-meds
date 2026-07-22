@@ -4,9 +4,11 @@ import { Heart, ArrowRight, CheckCircle, Shield } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { createDonationSession } from "../services/api";
+import useScrollReveal from "../hooks/useScrollReveal";
 import "../styles/Donate.css";
 
 const Donate = () => {
+  useScrollReveal();
   const [amount, setAmount] = useState("");
   const [customAmount, setCustomAmount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +59,7 @@ const Donate = () => {
     <div className="donate-page">
       <Navbar />
 
-      <section className="donate-hero">
+      <section className="donate-hero scroll-reveal">
         <div className="container">
           <h1>Make a Donation</h1>
           <p>
@@ -67,7 +69,7 @@ const Donate = () => {
         </div>
       </section>
 
-      <section className="donate-form-section">
+      <section className="donate-form-section scroll-reveal">
         <div className="container">
           <div className="donate-grid">
             <div className="donate-form-wrapper">
