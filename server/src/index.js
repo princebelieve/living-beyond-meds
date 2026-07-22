@@ -13,7 +13,8 @@ const productRoutes = require("./routes/product.routes");
 const orderRoutes = require("./routes/order.routes");
 const authRoutes = require("./routes/auth.routes");
 const measurementRoutes = require("./routes/measurementRoutes");
-const storyRoutes = require("./routes/story.routes"); // ← ADD THIS
+const storyRoutes = require("./routes/story.routes");
+const supportRoutes = require("./routes/support.routes");
 
 const app = express();
 
@@ -45,7 +46,8 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/measurements", measurementRoutes);
-app.use("/api/stories", storyRoutes); // ← ADD THIS
+app.use("/api/stories", storyRoutes);
+app.use("/api/support", supportRoutes);
 
 app.get("/", (req, res) => {
   res.send("Living Beyond Meds API is running");

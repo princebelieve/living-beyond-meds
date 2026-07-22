@@ -1,0 +1,14 @@
+const express = require("express");
+const router = express.Router();
+const {
+  createSupportChat,
+  getAllSupportTickets,
+  updateSupportTicket,
+} = require("../controllers/support.controller");
+const { protect, adminOnly } = require("../middleware/auth");
+
+router.post("/chat", createSupportChat);
+router.get("/tickets", protect, adminOnly, getAllSupportTickets);
+router.put("/tickets/:id", protect, adminOnly, updateSupportTicket);
+
+module.exports = router;

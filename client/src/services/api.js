@@ -71,6 +71,48 @@ export async function createDonationSession(data) {
   return result;
 }
 
+export async function sendSupportChat(data) {
+  const res = await fetch(`${BASE_URL}/api/support/chat`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  const result = await res.json();
+  if (!res.ok) {
+    throw new Error(result.message || "Support request failed");
+  }
+  return result;
+}
+
+export async function getSupportTickets(token) {
+  const res = await fetch(`${BASE_URL}/api/support/tickets`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const result = await res.json();
+  if (!res.ok) {
+    throw new Error(result.message || "Unable to load support tickets");
+  }
+  return result;
+}
+
+export async function updateSupportTicket(id, data, token) {
+  const res = await fetch(`${BASE_URL}/api/support/tickets/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+  const result = await res.json();
+  if (!res.ok) {
+    throw new Error(result.message || "Unable to update support ticket");
+  }
+  return result;
+}
+
 // -------------------------
 // STORIES
 // -------------------------
