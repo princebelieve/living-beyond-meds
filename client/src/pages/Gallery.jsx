@@ -4,6 +4,7 @@ import { PlayCircle, Image as ImageIcon } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import useScrollReveal from "../hooks/useScrollReveal";
+import "../styles/Gallery.css";
 
 const Gallery = () => {
   useScrollReveal();
@@ -27,179 +28,103 @@ const Gallery = () => {
 
   const filteredStories =
     filter === "all" ? stories : stories.filter((s) => s.type === filter);
+  const latestHeadlines = stories.slice(0, 3);
 
   const types = ["all", "story", "event", "video", "blog"];
 
   return (
-    <div className="gallery-page" style={{ paddingTop: "120px" }}>
+    <div className="gallery-page">
       <Navbar />
 
-      <section
-        className="scroll-reveal"
-        style={{
-          background: "linear-gradient(135deg, #0f2f44 0%, #16664d 100%)",
-          color: "white",
-          padding: "60px 0",
-          textAlign: "center",
-        }}
-      >
-        <div className="container">
-          <h1 style={{ fontSize: "3rem", marginBottom: "16px" }}>Gallery</h1>
-          <p style={{ fontSize: "1.2rem", opacity: 0.9 }}>
-            Stories of hope, transformation, and community impact
-          </p>
+      <section className="gallery-hero scroll-reveal">
+        <div className="container gallery-hero-content">
+          <div>
+            <span className="gallery-badge">Stories & impact</span>
+            <h1>Gallery</h1>
+            <p>
+              A closer look at the stories, events, and moments that reflect
+              hope, dignity, and community impact.
+            </p>
+            <div className="gallery-stats">
+              <div className="gallery-stat">
+                <strong>{stories.length}</strong>
+                <span>shared stories</span>
+              </div>
+              <div className="gallery-stat">
+                <strong>{new Set(stories.map((story) => story.type).filter(Boolean)).size}</strong>
+                <span>content types</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="gallery-highlight" aria-label="Latest story updates">
+            <div className="news-header">
+              <span className="news-live">LIVE</span>
+              <span className="news-label">Latest updates</span>
+            </div>
+            <div className="news-stack">
+              {latestHeadlines.length > 0 ? (
+                latestHeadlines.map((story, index) => (
+                  <div key={story._id || index} className={`news-card ${index % 2 === 1 ? "alt" : ""}`}>
+                    <strong>{story.title}</strong>
+                    <p>{story.excerpt || story.content?.slice(0, 90) || "New story published"}</p>
+                  </div>
+                ))
+              ) : (
+                <div className="news-card">
+                  <strong>No updates yet</strong>
+                  <p>New stories will appear here as soon as they are published.</p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="scroll-reveal" style={{ padding: "40px 0", background: "#F8F4F0" }}>
+      <section className="gallery-section scroll-reveal">
         <div className="container">
-          <div
-            style={{
-              display: "flex",
-              gap: "12px",
-              justifyContent: "center",
-              flexWrap: "wrap",
-              marginBottom: "40px",
-            }}
-          >
+          <div className="gallery-filter-row">
             {types.map((type) => (
               <button
                 key={type}
                 onClick={() => setFilter(type)}
-                style={{
-                  padding: "10px 24px",
-                  borderRadius: "50px",
-                  border:
-                    filter === type ? "2px solid #16664d" : "2px solid #ddd",
-                  background: filter === type ? "#16664d" : "white",
-                  color: filter === type ? "white" : "#333",
-                  cursor: "pointer",
-                  fontWeight: "600",
-                  textTransform: "capitalize",
-                  transition: "all 0.3s ease",
-                }}
+                className={`gallery-filter-btn ${filter === type ? "active" : ""}`}
               >
                 {type}
               </button>
             ))}
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "30px",
-            }}
-          >
+          <div className="gallery-grid">
             {filteredStories.length > 0 ? (
               filteredStories.map((story) => (
-                <Link
-                  to={`/story/${story._id}`}
-                  key={story._id}
-                  style={{
-                    background: "white",
-                    borderRadius: "16px",
-                    overflow: "hidden",
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-                    textDecoration: "none",
-                    color: "inherit",
-                    transition: "transform 0.3s ease",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.transform = "translateY(-8px)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.transform = "translateY(0)")
-                  }
-                >
-                  <div
-                    style={{
-                      height: "250px",
-                      background: "#f0f0f0",
-                      position: "relative",
-                      overflow: "hidden",
-                    }}
-                  >
+                <Link to={`/story/${story._id}`} key={story._id} className="gallery-card">
+                  <div className="gallery-card-media">
                     {story.image ? (
-                      <img
-                        src={story.image}
-                        alt={story.title}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                        }}
-                      />
+                      <img src={story.image} alt={story.title} />
                     ) : (
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          height: "100%",
-                          background: "#e0e0e0",
-                        }}
-                      >
-                        <ImageIcon size={48} color="#999" />
+                      <div className="gallery-card-placeholder">
+                        <ImageIcon size={48} />
                       </div>
                     )}
                     {story.videoUrl && (
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "50%",
-                          left: "50%",
-                          transform: "translate(-50%, -50%)",
-                          color: "white",
-                        }}
-                      >
-                        <PlayCircle size={60} />
+                      <div className="gallery-card-play">
+                        <PlayCircle size={56} />
                       </div>
                     )}
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "12px",
-                        right: "12px",
-                        background: "#8B1A4A",
-                        color: "white",
-                        padding: "4px 12px",
-                        borderRadius: "50px",
-                        fontSize: "12px",
-                        fontWeight: "600",
-                        textTransform: "capitalize",
-                      }}
-                    >
-                      {story.type || "story"}
-                    </div>
+                    <div className="gallery-card-tag">{story.type || "story"}</div>
                   </div>
-                  <div style={{ padding: "20px" }}>
-                    <h3 style={{ fontSize: "1.1rem", marginBottom: "8px" }}>
-                      {story.title}
-                    </h3>
-                    <p
-                      style={{
-                        color: "#666",
-                        fontSize: "0.95rem",
-                        lineHeight: "1.6",
-                      }}
-                    >
-                      {story.excerpt}
-                    </p>
+                  <div className="gallery-card-content">
+                    <h3>{story.title}</h3>
+                    <p>{story.excerpt}</p>
+                    <span className="gallery-card-link">View story →</span>
                   </div>
                 </Link>
               ))
             ) : (
-              <div
-                style={{
-                  gridColumn: "1 / -1",
-                  textAlign: "center",
-                  padding: "60px 0",
-                }}
-              >
-                <p style={{ color: "#666", fontSize: "1.2rem" }}>
-                  No stories available yet. Check back soon!
-                </p>
+              <div className="gallery-empty-state">
+                <h3>No stories yet</h3>
+                <p>No stories are available for this selection right now.</p>
               </div>
             )}
           </div>
