@@ -37,7 +37,7 @@ export default function Success() {
 
       {!order.error && (
         <div style={{ margin: "24px 0" }}>
-          <h3>Order Details</h3>
+          <h2>Order Details</h2>
           <p>Product ID: {order.productId}</p>
           <p>Amount: £{order.amount.toLocaleString()}</p>
           <p>Status: {order.status}</p>

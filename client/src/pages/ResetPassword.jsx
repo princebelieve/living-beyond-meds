@@ -50,7 +50,7 @@ export default function ResetPassword() {
 
       <div className="auth-page">
         <div className="form">
-          <h2>Reset Password</h2>
+          <h1>Reset Password</h1>
 
         <p className="muted" style={{ marginBottom: 20 }}>
           Enter your new password below.

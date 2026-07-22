@@ -164,7 +164,7 @@ const Donate = () => {
 
             <div className="donate-info">
               <div className="impact-card">
-                <h3>Your Impact</h3>
+                <h2>Your Impact</h2>
                 <ul>
                   <li>
                     <span className="impact-amount">£10</span>
