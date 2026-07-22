@@ -18,17 +18,18 @@
   padding: 110px 0 90px;
   background:
     radial-gradient(circle at top left, rgba(243, 193, 62, 0.18), transparent 28%),
-    linear-gradient(135deg, rgba(7, 34, 46, 0.96), rgba(11, 60, 70, 0.92));
+    linear-gradient(135deg, rgba(7, 34, 46, 0.94), rgba(11, 60, 70, 0.9));
 }
 
 .causes-hero-backdrop {
   position: absolute;
   inset: 0;
-  background-image: url("/images/causes-hero.jpg");
+  background-image: url("/hero2.jpg");
   background-size: cover;
   background-position: center;
-  opacity: 0.16;
-  mix-blend-mode: screen;
+  opacity: 0.45;
+  filter: saturate(1.15) brightness(1.12) contrast(1.04);
+  transform: scale(1.02);
 }
 
 .causes-hero-glow {
@@ -52,14 +53,33 @@
 
 .causes-hero-copy {
   max-width: 700px;
-  opacity: 0;
-  transform: translateY(24px);
-  transition: all 0.9s ease;
 }
 
-.causes-hero-copy.is-ready {
+.causes-hero-copy .causes-hero-item {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s ease, transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.causes-hero-copy.is-ready .causes-hero-item {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
+}
+
+.causes-hero-copy.is-ready .causes-eyebrow {
+  transition-delay: 0.1s;
+}
+
+.causes-hero-copy.is-ready h1 {
+  transition-delay: 0.2s;
+}
+
+.causes-hero-copy.is-ready p {
+  transition-delay: 0.3s;
+}
+
+.causes-hero-copy.is-ready .causes-hero-actions {
+  transition-delay: 0.4s;
 }
 
 .causes-eyebrow {
@@ -116,10 +136,25 @@
   font-weight: 700;
   text-decoration: none;
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  animation: buttonBreathe 3.2s ease-in-out infinite;
 }
 
 .causes-btn:hover {
   transform: translateY(-2px);
+}
+
+.causes-btn-ghost {
+  animation-delay: 0.2s;
+}
+
+@keyframes buttonBreathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.01);
+  }
 }
 
 .causes-btn-primary {
@@ -144,18 +179,19 @@
   position: relative;
   padding: 28px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
   opacity: 0;
-  transform: translateY(24px);
-  transition: all 0.9s ease 0.1s;
+  transform: translateX(60px) scale(0.96);
+  transition: opacity 0.9s ease, transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .causes-hero-card.is-ready {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0) scale(1);
 }
 
 .causes-card-label {

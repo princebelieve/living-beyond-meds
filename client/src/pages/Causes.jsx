@@ -65,17 +65,19 @@ const Causes = () => {
 
         <div className="container causes-hero-content">
           <div className={`causes-hero-copy ${isReady ? "is-ready" : ""}`}>
-            <span className="causes-eyebrow">Living Beyond Meds • The Widows Empowerment Trust</span>
-            <h1>
+            <span className="causes-eyebrow causes-hero-item">
+              Living Beyond Meds • The Widows Empowerment Trust
+            </span>
+            <h1 className="causes-hero-item">
               Restoring dignity through compassion,
               <span>opportunity, and lasting support.</span>
             </h1>
-            <p>
+            <p className="causes-hero-item">
               We stand beside widows and vulnerable women as they navigate grief,
               uncertainty, and reinvention with courage and care.
             </p>
 
-            <div className="causes-hero-actions">
+            <div className="causes-hero-actions causes-hero-item">
               <Link to="/donate" className="causes-btn causes-btn-primary">
                 Donate Now <ArrowRight size={18} />
               </Link>
