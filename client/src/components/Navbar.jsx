@@ -44,6 +44,7 @@ const Navbar = () => {
     { name: "Causes", path: "/causes" },
     { name: "Gallery", path: "/gallery" },
     { name: "Contact", path: "/contact" },
+    ...(isLoggedIn ? [{ name: "Support", path: "/support" }] : []),
   ];
 
   return (

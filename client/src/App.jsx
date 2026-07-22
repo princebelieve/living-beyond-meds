@@ -18,6 +18,7 @@ import ResetPassword from "./pages/ResetPassword";
 import AdminProducts from "./pages/AdminProducts";
 import Support from "./pages/Support";
 import RequireAdmin from "./components/RequireAdmin.jsx";
+import RequireAuth from "./components/RequireAuth.jsx";
 import SupportBubble from "./components/SupportBubble";
 import "./index.css";
 import ScrollToTop from "./components/ScrollToTop";
@@ -49,8 +50,16 @@ export default function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
 
+        {/* User support */}
+        <Route
+          path="/support"
+          element={
+            <RequireAuth>
+              <Support />
+            </RequireAuth>
+          }
+        />
         {/* Admin */}
-        <Route path="/support" element={<Support />} />
         <Route
           path="/admin/products"
           element={

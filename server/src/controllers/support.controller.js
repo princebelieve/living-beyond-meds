@@ -41,6 +41,14 @@ const createSupportChat = async (req, res) => {
 
     if (!escalated) {
       aiReply = await generateSupportResponse({ name, email, message });
+
+      if (typeof aiReply !== "string") {
+        if (aiReply && typeof aiReply === "object") {
+          aiReply = aiReply.reply || aiReply.text || JSON.stringify(aiReply);
+        } else {
+          aiReply = String(aiReply || "");
+        }
+      }
     }
 
     const ticket = await SupportTicket.create({

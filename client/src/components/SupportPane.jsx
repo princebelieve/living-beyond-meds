@@ -1,22 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { sendSupportChat } from "../services/api";
+import useAuth from "../hooks/useAuth";
 import "../styles/ChatBubble.css";
 
 export default function SupportPane({ onClose, adminMode = false }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const { user, isLoggedIn } = useAuth();
   const [message, setMessage] = useState("");
   const [needHumanSupport, setNeedHumanSupport] = useState(false);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showLoginReminder, setShowLoginReminder] = useState(false);
+  const chatHistoryRef = useRef(null);
+
+  useEffect(() => {
+    if (chatHistoryRef.current) {
+      chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    if (event?.preventDefault) event.preventDefault();
     setError("");
+    setShowLoginReminder(false);
 
-    if (!name.trim() || !email.trim() || !message.trim()) {
-      setError("Please enter your name, email, and message.");
+    if (!message.trim()) {
+      setError("Please enter your question.");
       return;
     }
 
@@ -26,8 +37,8 @@ export default function SupportPane({ onClose, adminMode = false }) {
 
     try {
       const response = await sendSupportChat({
-        name: name.trim(),
-        email: email.trim(),
+        name: user?.name || "Guest",
+        email: user?.email || "guest@livingbeyondmeds.com",
         message: userMessage,
         needHumanSupport,
       });
@@ -41,11 +52,21 @@ export default function SupportPane({ onClose, adminMode = false }) {
         },
       ]);
       setMessage("");
-      setNeedHumanSupport(false);
+
+      if (response.escalated && !isLoggedIn) {
+        setShowLoginReminder(true);
+      }
     } catch (err) {
       setError(err.message || "Something went wrong. Please try again.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleTextareaKeyDown = (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handleSubmit();
     }
   };
 
@@ -54,11 +75,11 @@ export default function SupportPane({ onClose, adminMode = false }) {
       <div className="support-pane-header">
         <div>
           <div className="eyebrow">Support</div>
-          <h2>{adminMode ? "Admin support console" : "Chat with support"}</h2>
+          <h2>{adminMode ? "Admin support console" : "Support Chat"}</h2>
           <p>
             {adminMode
               ? "Review support requests and reply directly to users."
-              : "Ask about donations, volunteering, events, or request human support."}
+              : "Ask a question and get an instant support response."}
           </p>
         </div>
         {onClose && (
@@ -69,11 +90,9 @@ export default function SupportPane({ onClose, adminMode = false }) {
       </div>
 
       <div className="support-chat-panel">
-        <div className="chat-history">
+        <div className="chat-history" ref={chatHistoryRef}>
           {messages.length === 0 ? (
-            <div className="chat-empty">
-              Start the conversation with your question.
-            </div>
+            <div className="chat-empty">Say something to start the chat.</div>
           ) : (
             messages.map((messageItem, index) => (
               <div
@@ -90,42 +109,16 @@ export default function SupportPane({ onClose, adminMode = false }) {
         </div>
 
         <form className="support-form" onSubmit={handleSubmit}>
-          <div className="support-form-row">
-            <label>
-              Name
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Your full name"
-                required
-              />
-            </label>
-            <label>
-              Email
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="name@example.com"
-                required
-              />
-            </label>
-          </div>
-
           <label>
             Message
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              onKeyDown={handleTextareaKeyDown}
               rows={4}
-              placeholder="Write your question or request human support"
+              placeholder="Type your question here"
               required
             />
-          </label>
-
-          <label className="support-note">
-            Your name and email let us follow up on this request by email if an admin needs to reply.
           </label>
 
           <label className="support-checkbox">
@@ -138,14 +131,28 @@ export default function SupportPane({ onClose, adminMode = false }) {
           </label>
 
           {error && <div className="form-error">{error}</div>}
+          {showLoginReminder && (
+            <div className="form-note">
+              To escalate this request or receive email follow-up, please log in.
+            </div>
+          )}
 
           <div className="support-footer-actions">
             <button type="submit" className="support-submit" disabled={loading}>
-              {loading ? "Sending..." : "Send support request"}
+              {loading ? "Sending..." : "Send"}
             </button>
+            {!isLoggedIn && (
+              <button
+                type="button"
+                className="support-login-btn"
+                onClick={() => navigate("/login")}
+              >
+                Log in
+              </button>
+            )}
             {onClose && (
               <button type="button" className="support-close-btn" onClick={onClose}>
-                Close chat
+                Close
               </button>
             )}
           </div>

@@ -195,6 +195,21 @@
   align-items: center;
 }
 
+.support-login-btn,
+.support-close-btn {
+  background: transparent;
+  border: 1px solid var(--gray-300);
+  color: var(--gray-700);
+  padding: 14px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.support-login-btn:hover,
+.support-close-btn:hover {
+  background: var(--gray-100);
+}
+
 .support-submit:disabled {
   opacity: 0.65;
   cursor: not-allowed;
