@@ -252,7 +252,8 @@
 
 .impact-card ul li p {
     margin: 0;
-    color: var(--gray-600);
+    font-size: 1rem;
+    color: var(--gray-700);
 }
 
 .donate-testimonial {

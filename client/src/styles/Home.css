@@ -628,9 +628,9 @@
 }
 
 .home-page .service-card p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--gray-600);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--gray-800);
 }
 
 /* --- Stats Section --- */
@@ -734,16 +734,16 @@
 }
 
 .home-page .story-content p {
-    font-size: 0.95rem;
-    color: var(--gray-600);
-    line-height: 1.6;
+    font-size: 1.05rem;
+    color: var(--gray-800);
+    line-height: 1.8;
     margin-bottom: 12px;
 }
 
 .home-page .read-more {
     color: var(--gold);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1rem;
     transition: all var(--transition-fast);
 }
 

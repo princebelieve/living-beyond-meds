@@ -24,8 +24,8 @@
 .navbar-top {
     background: var(--navy);
     color: var(--white);
-    padding: 6px 0;
-    font-size: 0.8rem;
+    padding: 8px 0;
+    font-size: 0.9rem;
 }
 
 .navbar-top-content {
@@ -46,12 +46,13 @@
 }
 
 .navbar-contact a {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.92);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 6px;
     transition: all var(--transition-fast);
+    font-size: 0.95rem;
 }
 
 .navbar-contact a:hover {
@@ -123,9 +124,9 @@
 
 .navbar-links a {
     text-decoration: none;
-    color: var(--gray-700);
+    color: var(--gray-800);
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 1rem;
     transition: all var(--transition-fast);
     position: relative;
 }

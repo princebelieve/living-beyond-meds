@@ -187,6 +187,121 @@
     }
 }
 
+.collection-hero {
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 24px;
+    align-items: center;
+    padding: 32px;
+    background: linear-gradient(135deg, rgba(22, 102, 77, 0.08), rgba(243, 193, 62, 0.12));
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    margin-bottom: 36px;
+}
+
+.collection-copy h1 {
+    color: var(--navy);
+    margin: 12px 0 16px;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+}
+
+.collection-copy p {
+    color: var(--gray-600);
+    line-height: 1.8;
+    max-width: 680px;
+}
+
+.collection-actions {
+    margin-top: 24px;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 22px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--gold);
+    color: var(--navy);
+    background: transparent;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all var(--transition-base);
+}
+
+.btn-secondary:hover {
+    background: var(--gold);
+    color: var(--navy);
+}
+
+.collection-card {
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-md);
+}
+
+.collection-card h2 {
+    color: var(--navy);
+    margin-bottom: 14px;
+}
+
+.collection-card ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 1rem;
+    color: var(--gray-700);
+    line-height: 1.8;
+}
+
+.collection-body {
+    margin-top: 20px;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--deep-green);
+    margin-bottom: 6px;
+}
+
+.empty-state {
+    padding: 36px 20px;
+    text-align: center;
+    background: var(--white);
+    border: 1px dashed var(--gray-300);
+    border-radius: var(--radius-lg);
+    color: var(--gray-600);
+}
+
+@media (max-width: 768px) {
+    .products-page {
+        padding-top: 70px;
+    }
+
+    .product-detail {
+        padding: 20px 0;
+    }
+
+    .card .product-image-wrapper {
+        height: 200px;
+    }
+
+    .collection-hero {
+        grid-template-columns: 1fr;
+        padding: 24px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .products-page {
         padding-top: 70px;
