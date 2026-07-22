@@ -53,10 +53,10 @@ const Navbar = () => {
           <div className="navbar-top-content">
             <div className="navbar-contact">
               <a href="mailto:info@livingbeyondmeds.com">
-                <Mail size={16} /> info@livingbeyondmeds.com
+                <Mail size={22} /> info@livingbeyondmeds.com
               </a>
               <a href="tel:+447476088871">
-                <Phone size={16} /> +447476088871
+                <Phone size={22} /> +44 7476 088871
               </a>
             </div>
             <div className="navbar-actions navbar-donate">
@@ -66,10 +66,10 @@ const Navbar = () => {
                 rel="noreferrer"
                 className="navbar-whatsapp"
               >
-                <MessageCircle size={16} /> WhatsApp
+                <MessageCircle size={24} /> WhatsApp
               </a>
               <Link to="/donate" className="donate-btn">
-                <Heart size={16} /> Donate
+                <Heart size={24} /> Donate
               </Link>
             </div>
           </div>

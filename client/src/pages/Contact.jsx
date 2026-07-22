@@ -26,25 +26,35 @@ export default function Contact() {
             <aside className="hero-card">
               <h2>Get in Touch</h2>
               <div className="contact-card-row">
-                <Mail size={18} />
+                <Mail size={20} />
                 <div>
                   <strong>Support Email</strong>
-                  <p>info@livingbeyondmeds.com</p>
+                  <p>
+                    <a href="mailto:info@livingbeyondmeds.com">info@livingbeyondmeds.com</a>
+                  </p>
                 </div>
               </div>
               <div className="contact-card-row">
-                <Phone size={18} />
+                <Phone size={20} />
                 <div>
                   <strong>Phone Number</strong>
-                  <p>+44 7476 088871</p>
+                  <p>
+                    <a href="tel:+447476088871">+44 7476 088871</a>
+                  </p>
                 </div>
               </div>
               <div className="contact-card-row">
-                <MapPin size={18} />
+                <MapPin size={20} />
                 <div>
                   <strong>Address</strong>
                   <p>
-                    29 Cross Street Chapel, Cross Street, Manchester, M2 1NL
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=29+Cross+Street+Chapel+Manchester+M2+1NL"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      29 Cross Street Chapel, Cross Street, Manchester, M2 1NL
+                    </a>
                   </p>
                 </div>
               </div>
@@ -69,6 +79,85 @@ export default function Contact() {
           </div>
         </section>
 
+        <section className="contact-form-section scroll-reveal">
+          <div className="container">
+            <div className="contact-form-grid">
+              <div className="contact-form-panel">
+                <span className="eyebrow">Reach out</span>
+                <h2>Reach out to Living Beyond Meds</h2>
+                <p>
+                  Have a question, offer your time, or support our work directly.
+                </p>
+
+                <form
+                  className="contact-form cta-form"
+                  action="mailto:info@livingbeyondmeds.com"
+                  method="GET"
+                  encType="text/plain"
+                >
+                  <div className="form-row">
+                    <label>
+                      Name
+                      <input
+                        className="cta-input"
+                        type="text"
+                        name="name"
+                        required
+                        placeholder="Your name"
+                      />
+                    </label>
+
+                    <label>
+                      Email
+                      <input
+                        className="cta-input"
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="name@example.com"
+                      />
+                    </label>
+                  </div>
+
+                  <label>
+                    Subject
+                    <input
+                      className="cta-input"
+                      type="text"
+                      name="subject"
+                      required
+                      placeholder="How can we help you?"
+                    />
+                  </label>
+
+                  <label>
+                    Message
+                    <textarea
+                      className="cta-input"
+                      name="body"
+                      rows="6"
+                      required
+                      placeholder="Write your message here"
+                    />
+                  </label>
+
+                  <button type="submit" className="cta-submit contact-submit">
+                    Send message
+                  </button>
+                </form>
+              </div>
+
+              <div className="contact-media-panel">
+                <img
+                  src="/contact2.jpg"
+                  alt="Community connection at Living Beyond Meds"
+                  className="contact-main-image"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="contact-map scroll-reveal">
           <div className="container">
             <div className="section-heading">
@@ -82,6 +171,16 @@ export default function Contact() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
+            </div>
+            <div className="map-action-row">
+              <a
+                className="map-link"
+                href="https://www.google.com/maps/search/?api=1&query=29+Cross+Street+Chapel+Manchester+M2+1NL"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Open in Google Maps
+              </a>
             </div>
           </div>
         </section>

@@ -22,7 +22,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <FaFacebook size={20} />
+                <FaFacebook size={24} />
               </a>
               <a
                 href="https://twitter.com/"
@@ -30,7 +30,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <FaTwitter size={20} />
+                <FaTwitter size={24} />
               </a>
               <a
                 href="https://instagram.com/"
@@ -38,7 +38,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <FaInstagram size={20} />
+                <FaInstagram size={24} />
               </a>
               <a
                 href="https://youtube.com/"
@@ -46,7 +46,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <FaYoutube size={20} />
+                <FaYoutube size={24} />
               </a>
             </div>
           </div>
@@ -76,11 +76,11 @@ const Footer = () => {
             <h4>Contact Us</h4>
             <ul>
               <li>
-                <Phone size={16} />
+                <Phone size={20} />
                 <a href="tel:+447476088871">+44 7476 088871</a>
               </li>
               <li>
-                <Mail size={16} />
+                <Mail size={20} />
                 <a href="mailto:info@livingbeyondmeds.com">
                   info@livingbeyondmeds.com
                 </a>

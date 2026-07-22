@@ -124,13 +124,16 @@
 }
 
 .navbar-logo-image {
-    width: 42px;
-    height: 42px;
+    height: 50px;
+    width: auto;
+    max-width: 140px;
     object-fit: contain;
+    background: none;
+    margin: 0;
 }
 
 .logo-text {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 700;
     background: linear-gradient(135deg, var(--deep-green), var(--gold-dark));
     -webkit-background-clip: text;

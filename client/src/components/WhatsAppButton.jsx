@@ -25,7 +25,7 @@ export default function WhatsAppButton() {
       className="whatsapp-fab"
       aria-label="Chat on WhatsApp"
     >
-      <MessageCircle size={20} />
+      <MessageCircle size={24} />
       <span>WhatsApp</span>
     </a>
   );

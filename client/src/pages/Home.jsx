@@ -374,35 +374,49 @@ const Home = () => {
       <section className="cta-section scroll-reveal">
         <div className="cta-overlay"></div>
         <div className="container cta-content">
-          <h2 className="brand-heading-light">Join In Worldwide Team</h2>
-          <p>Be part of something bigger. Join us in making a difference.</p>
-          <div className="cta-form">
+          <h2 className="brand-heading-light">Reach out to Living Beyond Meds</h2>
+          <p>Have a question, offer your time, or support our work directly.</p>
+          <form
+            className="cta-form"
+            action="mailto:info@livingbeyondmeds.com"
+            method="GET"
+            encType="text/plain"
+          >
             <div className="input-group">
               <input
                 type="text"
-                placeholder="Enter User Name"
+                name="name"
+                placeholder="Your full name"
                 className="cta-input"
+                required
               />
             </div>
             <div className="input-group">
               <input
                 type="email"
-                placeholder="Enter Email Address"
+                name="email"
+                placeholder="Your email address"
                 className="cta-input"
+                required
               />
             </div>
             <div className="input-group">
               <input
                 type="tel"
-                placeholder="Contact Number"
+                name="phone"
+                placeholder="Contact number"
                 className="cta-input"
               />
             </div>
-            <button className="cta-submit">Join With Us</button>
-          </div>
+            <button type="submit" className="cta-submit">
+              Send message
+            </button>
+          </form>
           <div className="cta-phone">
             <Phone size={20} />
-            <span>Contact Us Now! +447476088871</span>
+            <span>
+              Contact us now: <a href="tel:+447476088871">+44 7476 088871</a>
+            </span>
           </div>
         </div>
       </section>
