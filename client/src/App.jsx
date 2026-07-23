@@ -16,6 +16,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import Mission from "./pages/Mission";
 import AdminProducts from "./pages/AdminProducts";
 import Support from "./pages/Support";
 import RequireAdmin from "./components/RequireAdmin.jsx";
@@ -32,6 +33,7 @@ export default function App() {
         {/* Main Pages */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/mission" element={<Mission />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/causes" element={<Causes />} />

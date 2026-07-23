@@ -41,7 +41,14 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
+    {
+      name: "About",
+      path: "/about",
+      subLinks: [
+        { name: "About Us", path: "/about" },
+        { name: "Mission", path: "/mission" },
+      ],
+    },
     { name: "Causes", path: "/causes" },
     { name: "Gallery", path: "/gallery" },
     { name: "Contact", path: "/contact" },
@@ -123,7 +130,42 @@ const Navbar = () => {
                 const isActive =
                   location.pathname === link.path ||
                   (link.path !== "/" &&
-                    location.pathname.startsWith(link.path));
+                    location.pathname.startsWith(link.path)) ||
+                  (link.subLinks &&
+                    link.subLinks.some((sub) =>
+                      location.pathname.startsWith(sub.path),
+                    ));
+
+                if (link.subLinks) {
+                  return (
+                    <div key={link.path} className="nav-dropdown">
+                      <Link
+                        to={link.path}
+                        onClick={() => setIsOpen(false)}
+                        className={isActive ? "nav-link active" : "nav-link"}
+                      >
+                        {link.name}
+                      </Link>
+                      <div className="nav-dropdown-menu">
+                        {link.subLinks.map((subLink) => (
+                          <Link
+                            key={subLink.path}
+                            to={subLink.path}
+                            onClick={() => setIsOpen(false)}
+                            className={
+                              location.pathname === subLink.path
+                                ? "nav-dropdown-item active"
+                                : "nav-dropdown-item"
+                            }
+                          >
+                            {subLink.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={link.path}
