@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, Phone, Mail, Heart, MessageCircle, ShoppingBag } from "lucide-react";
+import { Menu, X, Phone, Mail, Heart, MessageCircle, ShoppingBag, ShoppingCart } from "lucide-react";
 import useClickOutside from "../hooks/useClickOutside";
+import { useCart } from "../contexts/CartContext";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
@@ -46,6 +47,8 @@ const Navbar = () => {
     { name: "Contact", path: "/contact" },
   ];
 
+  const { totalItems } = useCart();
+
   return (
     <nav className={`navbar ${isScrolled ? "navbar-scrolled" : ""}`}>
       <div className="navbar-top">
@@ -62,6 +65,12 @@ const Navbar = () => {
             <div className="navbar-actions navbar-donate">
               <Link to="/collection" className="navbar-shop">
                 <ShoppingBag size={22} /> Shop
+              </Link>
+              <Link to="/cart" className="navbar-cart">
+                <ShoppingCart size={22} />
+                {totalItems > 0 && (
+                  <span className="cart-badge">{totalItems}</span>
+                )}
               </Link>
               <a
                 href="https://wa.me/447476088871?text=Hello%2C%20I%20would%20love%20to%20learn%20more%20about%20your%20work."
@@ -88,8 +97,23 @@ const Navbar = () => {
                 alt="Living Beyond Meds logo"
                 className="navbar-logo-image"
               />
-              <span className="logo-text">Living Beyond Meds</span>
+              <span className="logo-text">
+                <span className="logo-text-full">Living Beyond Meds</span>
+                <span className="logo-text-short">Living Beyond</span>
+              </span>
             </Link>
+
+            <div className="navbar-mobile-actions">
+              <Link to="/collection" className="navbar-shop">
+                <ShoppingBag size={20} />
+              </Link>
+              <Link to="/cart" className="navbar-cart">
+                <ShoppingCart size={20} />
+                {totalItems > 0 && (
+                  <span className="cart-badge">{totalItems}</span>
+                )}
+              </Link>
+            </div>
 
             <div
               ref={menuRef}

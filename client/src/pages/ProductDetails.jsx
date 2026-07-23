@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { createCheckoutSession } from "../services/api";
+import { useCart } from "../contexts/CartContext";
 import "../styles/Product.css";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
@@ -10,6 +11,8 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 export default function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [statusMessage, setStatusMessage] = useState("");
+  const { addToCart } = useCart();
 
   useEffect(() => {
     fetch(`${BASE_URL}/api/products/${id}`)
@@ -38,6 +41,13 @@ export default function ProductDetails() {
     }
   }
 
+  const handleAddToCart = () => {
+    if (!product) return;
+    addToCart(product);
+    setStatusMessage("Added to cart.");
+    window.setTimeout(() => setStatusMessage(""), 2600);
+  };
+
   if (!product) {
     return (
       <div className="page">
@@ -63,9 +73,15 @@ export default function ProductDetails() {
             <h1>{product.name}</h1>
             <h2>£{Number(product?.price || 0).toLocaleString()}</h2>
 
-            <button className="primary" onClick={buyNow}>
-              Buy Now
-            </button>
+            <div className="product-actions">
+              <button className="primary" onClick={buyNow}>
+                Buy Now
+              </button>
+              <button className="secondary" onClick={handleAddToCart}>
+                Add to Cart
+              </button>
+            </div>
+            {statusMessage && <p className="status-message">{statusMessage}</p>}
           </div>
         </div>
       </div>

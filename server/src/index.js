@@ -8,6 +8,7 @@ const path = require("path");
 const connectDB = require("./config/db");
 
 const paymentRoutes = require("./routes/payment.routes");
+const cartRoutes = require("./routes/cart.routes");
 const webhookRoutes = require("./routes/webhook.routes");
 const productRoutes = require("./routes/product.routes");
 const orderRoutes = require("./routes/order.routes");
@@ -43,6 +44,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // routes
 app.use("/api/auth", authRoutes);
 app.use("/api/payments", paymentRoutes);
+app.use("/api/cart", cartRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/measurements", measurementRoutes);

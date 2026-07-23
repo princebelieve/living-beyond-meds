@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Collection from "./pages/Collection";
 import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
 import Success from "./pages/Success";
 import Cancel from "./pages/Cancel";
 import About from "./pages/About";
@@ -40,6 +41,7 @@ export default function App() {
         {/* E-commerce */}
         <Route path="/collection" element={<Collection />} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<Cancel />} />
 

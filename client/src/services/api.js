@@ -55,6 +55,19 @@ export async function createCheckoutSession(productId) {
   return data;
 }
 
+export async function createCartCheckoutSession(cartItems) {
+  const res = await fetch(`${BASE_URL}/api/payments/create-cart-checkout-session`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cartItems }),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error || data.message || "Checkout session failed");
+  }
+  return data;
+}
+
 // DONATION
 export async function createDonationSession(data) {
   const res = await fetch(`${BASE_URL}/api/payments/create-donation-session`, {

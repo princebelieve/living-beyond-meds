@@ -157,10 +157,22 @@ body > .navbar + * {
     background-clip: text;
 }
 
+.logo-text-short {
+    display: none;
+}
+
+.logo-text-full {
+    display: inline;
+}
+
 .navbar-links {
     display: flex;
     align-items: center;
     gap: 28px;
+}
+
+.navbar-mobile-actions {
+    display: none;
 }
 
 .navbar-links a {
@@ -239,14 +251,106 @@ body > .navbar + * {
         font-size: 0.75rem;
     }
 
+    .navbar-actions {
+        gap: 6px;
+    }
+
     .navbar-links {
         gap: 20px;
     }
 }
 
+.navbar-cart {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: var(--radius-full);
+    background: rgba(37, 211, 102, 0.12);
+    color: #0f2f44;
+    border: 1px solid rgba(37, 211, 102, 0.24);
+    position: relative;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.navbar-cart:hover {
+    transform: translateY(-1px);
+    background: rgba(37, 211, 102, 0.24);
+}
+
+.cart-badge {
+    display: inline-flex;
+    min-width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0 6px;
+}
+
 @media (max-width: 768px) {
     .navbar-top {
         display: none;
+    }
+
+    .navbar-main-content {
+        gap: 8px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-logo {
+        gap: 8px;
+        min-width: 0;
+        flex: 1;
+    }
+
+    .navbar-logo-image {
+        height: 40px;
+    }
+
+    .logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.05;
+        font-size: 0.95rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .logo-text-full {
+        display: none;
+    }
+
+    .logo-text-short {
+        display: inline;
+    }
+
+    .navbar-mobile-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .navbar-shop,
+    .navbar-cart {
+        padding: 8px 10px;
+        min-width: auto;
+    }
+
+    .navbar-shop {
+        font-size: 0.85rem;
+    }
+
+    .navbar-cart {
+        font-size: 0.85rem;
     }
 
     .mobile-menu-btn {
@@ -267,6 +371,7 @@ body > .navbar + * {
         transition: all var(--transition-base);
         overflow-y: auto;
         align-items: stretch;
+        z-index: 1001;
     }
 
     .navbar-links.active {
