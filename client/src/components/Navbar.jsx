@@ -99,7 +99,7 @@ const Navbar = () => {
               />
               <span className="logo-text">
                 <span className="logo-text-full">Living Beyond Meds</span>
-                <span className="logo-text-short">Living Beyond</span>
+                <span className="logo-text-short">Living Beyond Meds</span>
               </span>
             </Link>
 

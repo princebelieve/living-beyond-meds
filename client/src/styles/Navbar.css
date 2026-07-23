@@ -300,15 +300,16 @@ body > .navbar + * {
     }
 
     .navbar-main-content {
-        gap: 8px;
+        gap: 10px;
         justify-content: space-between;
         align-items: center;
     }
 
     .navbar-logo {
-        gap: 8px;
+        gap: 10px;
         min-width: 0;
         flex: 1;
+        padding-left: 4px;
     }
 
     .navbar-logo-image {
