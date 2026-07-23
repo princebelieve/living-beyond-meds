@@ -1,5 +1,5 @@
 //client/src/pages/Home.jsx
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   Heart,
@@ -25,6 +25,14 @@ const Home = () => {
   const [animateText, setAnimateText] = useState(true);
   const [previousSlide, setPreviousSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [statCounts, setStatCounts] = useState({
+    widows: 0,
+    team: 0,
+    countries: 0,
+    awards: 0,
+  });
+  const [hasCounted, setHasCounted] = useState(false);
+  const statsRef = useRef(null);
 
   const heroSlides = [
     {
@@ -105,6 +113,53 @@ const Home = () => {
       mounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    const targets = {
+      widows: 500,
+      team: 30,
+      countries: 71,
+      awards: 38,
+    };
+    const duration = 1600;
+
+    const animate = (startTime) => {
+      const step = (currentTime) => {
+        const elapsed = Math.min(currentTime - startTime, duration);
+        const progress = elapsed / duration;
+
+        setStatCounts({
+          widows: Math.round(targets.widows * progress),
+          team: Math.round(targets.team * progress),
+          countries: Math.round(targets.countries * progress),
+          awards: Math.round(targets.awards * progress),
+        });
+
+        if (elapsed < duration) {
+          requestAnimationFrame(step);
+        }
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasCounted) {
+          setHasCounted(true);
+          animate(performance.now());
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 },
+    );
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasCounted]);
 
   useScrollReveal();
 
@@ -258,7 +313,7 @@ const Home = () => {
       </section>
 
       {/* STATS SECTION */}
-      <section className="stats-section scroll-reveal">
+      <section className="stats-section scroll-reveal" ref={statsRef}>
         <div className="container">
           <div className="section-header light">
             <span className="section-tag gold">Some Fun Fact</span>
@@ -271,28 +326,28 @@ const Home = () => {
               <div className="stat-icon">
                 <Users size={40} />
               </div>
-              <div className="stat-number">500+</div>
+              <div className="stat-number">{statCounts.widows.toLocaleString()}+</div>
               <div className="stat-label">Widows Supported</div>
             </div>
             <div className="stat-item">
               <div className="stat-icon">
                 <Heart size={40} />
               </div>
-              <div className="stat-number">30</div>
+              <div className="stat-number">{statCounts.team.toLocaleString()}</div>
               <div className="stat-label">Team Members</div>
             </div>
             <div className="stat-item">
               <div className="stat-icon">
                 <Globe size={40} />
               </div>
-              <div className="stat-number">71</div>
+              <div className="stat-number">{statCounts.countries.toLocaleString()}</div>
               <div className="stat-label">Countries Worldwide</div>
             </div>
             <div className="stat-item">
               <div className="stat-icon">
                 <Award size={40} />
               </div>
-              <div className="stat-number">38</div>
+              <div className="stat-number">{statCounts.awards.toLocaleString()}</div>
               <div className="stat-label">Awards &amp; Recognition</div>
             </div>
           </div>

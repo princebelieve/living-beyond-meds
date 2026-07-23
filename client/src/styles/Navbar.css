@@ -319,11 +319,12 @@
     .logo-text {
         display: flex;
         flex-direction: column;
-        line-height: 1.05;
+        line-height: 1.1;
         font-size: 0.95rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        width: 100%;
+        overflow: visible;
+        white-space: normal;
+        text-overflow: unset;
     }
 
     .logo-text-full {
@@ -331,7 +332,8 @@
     }
 
     .logo-text-short {
-        display: inline;
+        display: inline-block;
+        white-space: normal;
     }
 
     .navbar-mobile-actions {
