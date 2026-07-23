@@ -96,6 +96,15 @@
     box-shadow: 0 40px 110px rgba(0, 0, 0, 0.36);
 }
 
+.contact-media-panel {
+    width: 100%;
+}
+
+.contact-main-image {
+    min-height: 420px;
+    max-height: 560px;
+}
+
 .contact-form-panel .eyebrow {
     display: inline-flex;
     padding: 8px 18px;
@@ -422,6 +431,20 @@
     .hero-copy p {
         max-width: 100%;
     }
+
+    .contact-form-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .contact-media-panel,
+    .contact-form-panel {
+        width: 100%;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Tablets */
@@ -431,7 +454,8 @@
         min-height: auto;
     }
 
-    .hero-card {
+    .hero-card,
+    .contact-form-panel {
         padding: 28px;
     }
 
@@ -535,6 +559,19 @@
         width: 100%;
         justify-content: center;
     }
+
+    .contact-form-panel {
+        padding: 28px;
+    }
+
+    .contact-form .cta-input,
+    .contact-form textarea {
+        padding: 16px 18px;
+    }
+
+    .contact-main-image {
+        min-height: 320px;
+    }
 }
 
 /* Small mobile devices */
@@ -587,5 +624,25 @@
 
     .contact-map .section-heading h2 {
         font-size: 1.4rem;
+    }
+
+    .contact-form-section {
+        padding: 40px 0;
+    }
+
+    .contact-form-grid {
+        gap: 22px;
+    }
+
+    .contact-form-panel {
+        padding: 20px;
+    }
+
+    .contact-main-image {
+        min-height: 240px;
+    }
+
+    .cta-submit.contact-submit {
+        width: 100%;
     }
 }

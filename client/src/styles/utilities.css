@@ -42,7 +42,11 @@
 .about-page,
 .donate-page,
 .products-page,
-.contact-page {
+.contact-page,
+.gallery-page,
+.causes-page,
+.support-page,
+.home-page {
     padding-top: var(--page-top-offset);
 }
 

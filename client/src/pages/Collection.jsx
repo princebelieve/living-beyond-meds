@@ -37,7 +37,7 @@ export default function Collection() {
               <span className="section-tag">Shop With Purpose</span>
               <h1>Support a cause with every purchase.</h1>
               <p>
-                Our collection brings together thoughtful pieces that reflect
+                Our products brings together thoughtful pieces that reflect
                 care, dignity, and the spirit of the Living Beyond Meds mission.
                 Every order helps sustain the work we do for women and families
                 in need.
@@ -61,7 +61,7 @@ export default function Collection() {
 
           <div className="collection-body reveal">
             <div className="section-header">
-              <h2>Our Collection</h2>
+              <h2>Our Products</h2>
               <p>
                 Browse the range below and choose something that speaks to your
                 style while supporting our cause.

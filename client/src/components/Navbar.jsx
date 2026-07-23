@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, Phone, Mail, Heart, MessageCircle } from "lucide-react";
+import { Menu, X, Phone, Mail, Heart, MessageCircle, ShoppingBag } from "lucide-react";
 import useClickOutside from "../hooks/useClickOutside";
 import "../styles/Navbar.css";
 
@@ -44,7 +44,6 @@ const Navbar = () => {
     { name: "Causes", path: "/causes" },
     { name: "Gallery", path: "/gallery" },
     { name: "Contact", path: "/contact" },
-    ...(isLoggedIn ? [{ name: "Support", path: "/support" }] : []),
   ];
 
   return (
@@ -61,6 +60,9 @@ const Navbar = () => {
               </a>
             </div>
             <div className="navbar-actions navbar-donate">
+              <Link to="/collection" className="navbar-shop">
+                <ShoppingBag size={22} /> Shop
+              </Link>
               <a
                 href="https://wa.me/447476088871?text=Hello%2C%20I%20would%20love%20to%20learn%20more%20about%20your%20work."
                 target="_blank"
