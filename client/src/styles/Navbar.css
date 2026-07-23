@@ -204,7 +204,7 @@ body > .navbar + * {
 }
 
 .navbar-links .nav-link.active {
-    color: var(--deep-green);
+    color: var(--deep-green-text);
     font-weight: 600;
 }
 

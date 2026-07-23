@@ -73,7 +73,7 @@
 .support-pane-header .eyebrow {
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--deep-green);
+  color: var(--deep-green-text);
   text-transform: uppercase;
   letter-spacing: 0.16em;
   margin-bottom: 8px;

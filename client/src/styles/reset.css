@@ -11,13 +11,36 @@ html {
 }
 
 body {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    background: var(--off-white);
-    color: var(--navy);
-    line-height: 1.7;
+    font-family: var(--font-sans);
+    font-size: 18px;
+    background: var(--surface);
+    color: var(--text);
+    line-height: 1.75;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+p,
+label,
+button,
+input,
+textarea,
+a {
+    color: var(--text);
 }
 
 img {

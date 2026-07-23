@@ -331,7 +331,7 @@
 }
 
 .gallery-card-link {
-    color: var(--deep-green);
+    color: var(--deep-green-text);
     font-weight: 700;
     font-size: 0.95rem;
 }

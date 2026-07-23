@@ -291,7 +291,7 @@
   justify-content: center;
   margin-bottom: 14px;
   background: rgba(22, 102, 77, 0.12);
-  color: var(--deep-green);
+  color: var(--deep-green-text);
 }
 
 .causes-intro-panel h3,
@@ -369,7 +369,7 @@
   align-items: center;
   gap: 8px;
   margin-top: 12px;
-  color: var(--deep-green);
+  color: var(--deep-green-text);
   font-weight: 700;
 }
 
@@ -388,7 +388,7 @@
 
 .causes-product-price {
   font-weight: 700;
-  color: var(--deep-green);
+  color: var(--deep-green-text);
   margin-bottom: 12px;
 }
 

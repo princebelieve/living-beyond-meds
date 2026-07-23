@@ -96,7 +96,7 @@
 .remove-link {
   border: none;
   background: transparent;
-  color: var(--deep-green);
+  color: var(--deep-green-text);
   font-weight: 600;
   cursor: pointer;
   padding: 0;

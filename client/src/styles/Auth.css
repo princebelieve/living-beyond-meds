@@ -156,7 +156,7 @@
 }
 
 .form-message.success {
-    color: #16664d;
+    color: var(--deep-green-text);
     background: rgba(22, 102, 77, 0.08);
     border-left-color: #16664d;
 }
