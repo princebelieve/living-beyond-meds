@@ -15,6 +15,10 @@ const supportTicketSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    attachmentUrl: {
+      type: String,
+      default: "",
+    },
     needHumanSupport: {
       type: Boolean,
       default: false,

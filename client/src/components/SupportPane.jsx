@@ -1,19 +1,18 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Send, Upload } from "lucide-react";
 import { sendSupportChat } from "../services/api";
 import useAuth from "../hooks/useAuth";
 import "../styles/ChatBubble.css";
 
 export default function SupportPane({ onClose, adminMode = false }) {
-  const navigate = useNavigate();
-  const { user, isLoggedIn } = useAuth();
+  const { user } = useAuth();
   const [message, setMessage] = useState("");
-  const [needHumanSupport, setNeedHumanSupport] = useState(false);
+  const [uploadFile, setUploadFile] = useState(null);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [showLoginReminder, setShowLoginReminder] = useState(false);
   const chatHistoryRef = useRef(null);
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     if (chatHistoryRef.current) {
@@ -24,10 +23,9 @@ export default function SupportPane({ onClose, adminMode = false }) {
   const handleSubmit = async (event) => {
     if (event?.preventDefault) event.preventDefault();
     setError("");
-    setShowLoginReminder(false);
 
     if (!message.trim()) {
-      setError("Please enter your question.");
+      setError("Please enter a message.");
       return;
     }
 
@@ -35,13 +33,17 @@ export default function SupportPane({ onClose, adminMode = false }) {
     setMessages((prev) => [...prev, { role: "user", text: userMessage }]);
     setLoading(true);
 
+    const formData = new FormData();
+    formData.append("name", user?.name || "Guest");
+    formData.append("email", user?.email || "guest@livingbeyondmeds.com");
+    formData.append("message", userMessage);
+    formData.append("needHumanSupport", "false");
+    if (uploadFile) {
+      formData.append("attachment", uploadFile);
+    }
+
     try {
-      const response = await sendSupportChat({
-        name: user?.name || "Guest",
-        email: user?.email || "guest@livingbeyondmeds.com",
-        message: userMessage,
-        needHumanSupport,
-      });
+      const response = await sendSupportChat(formData);
 
       setMessages((prev) => [
         ...prev,
@@ -52,9 +54,9 @@ export default function SupportPane({ onClose, adminMode = false }) {
         },
       ]);
       setMessage("");
-
-      if (response.escalated && !isLoggedIn) {
-        setShowLoginReminder(true);
+      setUploadFile(null);
+      if (textareaRef.current) {
+        textareaRef.current.style.height = "auto";
       }
     } catch (err) {
       setError(err.message || "Something went wrong. Please try again.");
@@ -70,21 +72,22 @@ export default function SupportPane({ onClose, adminMode = false }) {
     }
   };
 
+  const handleTextareaInput = (event) => {
+    const textarea = event.target;
+    textarea.style.height = "auto";
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  };
+
   return (
     <div className={`support-pane ${adminMode ? "support-pane-admin" : ""}`}>
       <div className="support-pane-header">
         <div>
-          <div className="eyebrow">Support</div>
-          <h2>{adminMode ? "Admin support console" : "Support Chat"}</h2>
-          <p>
-            {adminMode
-              ? "Review support requests and reply directly to users."
-              : "Ask a question and get an instant support response."}
-          </p>
+          <div className="eyebrow">Living Beyond Med Support</div>
+          <h2>Welcome to Living Beyond Med Support</h2>
         </div>
         {onClose && (
           <button type="button" className="support-pane-close" onClick={onClose}>
-            Close
+            ×
           </button>
         )}
       </div>
@@ -109,52 +112,37 @@ export default function SupportPane({ onClose, adminMode = false }) {
         </div>
 
         <form className="support-form" onSubmit={handleSubmit}>
-          <label>
-            Message
+          <div className="support-input-row">
+            <button type="submit" className="support-send-btn" disabled={loading}>
+              <Send size={18} />
+            </button>
             <textarea
+              ref={textareaRef}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              onInput={handleTextareaInput}
               onKeyDown={handleTextareaKeyDown}
-              rows={4}
-              placeholder="Type your question here"
+              rows={1}
+              placeholder="Message"
+              className="support-input"
               required
             />
-          </label>
-
-          <label className="support-checkbox">
-            <input
-              type="checkbox"
-              checked={needHumanSupport}
-              onChange={(e) => setNeedHumanSupport(e.target.checked)}
-            />
-            Request human support from an admin.
-          </label>
+            <label className="support-file-upload" title="Upload a file">
+              <Upload size={18} />
+              <input
+                type="file"
+                onChange={(e) => setUploadFile(e.target.files?.[0] || null)}
+              />
+            </label>
+          </div>
 
           {error && <div className="form-error">{error}</div>}
-          {showLoginReminder && (
-            <div className="form-note">
-              To escalate this request or receive email follow-up, please log in.
-            </div>
+          {uploadFile && (
+            <div className="support-upload-name">Attached: {uploadFile.name}</div>
           )}
 
-          <div className="support-footer-actions">
-            <button type="submit" className="support-submit" disabled={loading}>
-              {loading ? "Sending..." : "Send"}
-            </button>
-            {!isLoggedIn && (
-              <button
-                type="button"
-                className="support-login-btn"
-                onClick={() => navigate("/login")}
-              >
-                Log in
-              </button>
-            )}
-            {onClose && (
-              <button type="button" className="support-close-btn" onClick={onClose}>
-                Close
-              </button>
-            )}
+          <div className="support-footer-note">
+            Please note that this is a chatbot, you can request for human support inside the chat.
           </div>
         </form>
       </div>

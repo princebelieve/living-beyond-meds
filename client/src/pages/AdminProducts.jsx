@@ -35,12 +35,6 @@ export default function AdminProducts() {
     loadStories();
   }, []);
 
-  useEffect(() => {
-    if (activeTab === "support") {
-      loadSupportTickets();
-    }
-  }, [activeTab]);
-
   async function loadSupportTickets() {
     setSupportLoading(true);
     setSupportError("");
@@ -54,6 +48,12 @@ export default function AdminProducts() {
       setSupportLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (activeTab === "support") {
+      loadSupportTickets();
+    }
+  }, [activeTab]);
 
   async function handleSupportStatus(ticketId, status) {
     try {

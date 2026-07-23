@@ -295,15 +295,15 @@
 }
 
 .hero-title .highlight.animate {
-    animation: slideInFromRight .8s ease .2s forwards;
+    animation: slideInFromRight .8s ease .8s forwards;
 }
 
 .hero-description.animate {
-    animation: slideInFromBottom .8s ease .4s forwards;
+    animation: slideInFromBottom .8s ease 1.6s forwards;
 }
 
 .hero-buttons.animate {
-    animation: fadeInUp .8s ease .6s forwards;
+    animation: fadeInUp .8s ease 2.4s forwards;
 }
 
 @keyframes slideInFromLeft {

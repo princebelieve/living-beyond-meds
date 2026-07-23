@@ -75,7 +75,7 @@ const Home = () => {
       setTimeout(() => {
         setIsTransitioning(false);
       }, 1500);
-    }, 6000);
+    }, 12000);
 
     return () => window.clearInterval(interval);
   }, [currentSlide]);

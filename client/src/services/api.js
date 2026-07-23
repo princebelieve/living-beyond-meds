@@ -87,8 +87,7 @@ export async function createDonationSession(data) {
 export async function sendSupportChat(data) {
   const res = await fetch(`${BASE_URL}/api/support/chat`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: data,
   });
   const result = await res.json();
   if (!res.ok) {

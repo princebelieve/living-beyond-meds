@@ -1,5 +1,6 @@
 const SupportTicket = require("../models/SupportTicket");
 const { generateSupportResponse } = require("../services/openai");
+const { uploadToR2 } = require("../config/r2");
 
 const escalationKeywords = [
   "human",
@@ -28,12 +29,20 @@ function shouldEscalate(message, needHumanSupport) {
 
 const createSupportChat = async (req, res) => {
   try {
-    const { name, email, message, needHumanSupport = false } = req.body;
+    const { name, email, message } = req.body;
+    const needHumanSupport =
+      req.body.needHumanSupport === true ||
+      req.body.needHumanSupport === "true";
 
     if (!name || !email || !message) {
       return res
         .status(400)
         .json({ message: "Name, email, and message are required." });
+    }
+
+    let attachmentUrl = "";
+    if (req.file) {
+      attachmentUrl = await uploadToR2(req.file);
     }
 
     const escalated = shouldEscalate(message, needHumanSupport);
@@ -59,6 +68,7 @@ const createSupportChat = async (req, res) => {
       escalated,
       status: escalated ? "new" : "resolved",
       aiReply,
+      attachmentUrl,
       conversation: [
         { role: "user", text: message },
         ...(escalated ? [] : [{ role: "assistant", text: aiReply }]),
