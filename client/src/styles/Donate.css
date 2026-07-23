@@ -3,14 +3,13 @@
    ======================================== */
 
 .donate-page {
-    padding-top: clamp(100px, 12vw, 140px);
     background: var(--off-white);
 }
 
 .donate-hero {
     background: linear-gradient(135deg, var(--gold-dark), var(--gold));
     color: var(--white);
-    padding: 60px 0 80px;
+    padding: 0 0 80px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -286,10 +285,6 @@
 }
 
 @media (max-width: 768px) {
-    .donate-page {
-        padding-top: 70px;
-    }
-
     .donate-form-wrapper {
         padding: 24px;
     }

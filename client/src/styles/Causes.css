@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: var(--page-top-offset) 0 90px;
+  padding: calc(var(--navbar-height) + 20px) 0 90px;
   background:
     radial-gradient(circle at top left, rgba(243, 193, 62, 0.18), transparent 28%),
     linear-gradient(135deg, rgba(7, 34, 46, 0.94), rgba(11, 60, 70, 0.9));

@@ -3,12 +3,11 @@
    ======================================== */
 
 .gallery-page {
-    padding-top: clamp(104px, 13vw, 140px);
     background: linear-gradient(180deg, #f8f4f0 0%, #fdfaf7 100%);
 }
 
 .gallery-hero {
-    padding: 72px 0 56px;
+    padding: calc(var(--navbar-height) + 20px) 0 56px;
     background: linear-gradient(135deg, rgba(3, 26, 34, 0.98) 0%, rgba(20, 77, 62, 0.95) 45%, rgba(8, 43, 58, 0.98) 100%);
     color: var(--white);
     position: relative;

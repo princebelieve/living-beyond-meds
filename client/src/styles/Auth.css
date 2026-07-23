@@ -16,7 +16,7 @@
     align-items: flex-start;
     justify-content: center;
     background: linear-gradient(135deg, var(--auth-bg) 0%, #ffffff 100%);
-    padding: calc(var(--page-top-offset) + 10px) 20px 40px;
+    padding: 20px 20px 40px;
     box-sizing: border-box;
 }
 

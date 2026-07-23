@@ -3,11 +3,10 @@
    ======================================== */
 
 .contact-page {
-    padding-top: clamp(100px, 12vw, 140px);
 }
 
 .contact-page .contact-hero {
-    padding: 60px 0 80px;
+    padding: 0 0 80px;
     min-height: 560px;
     background-image: linear-gradient(135deg, rgba(15, 47, 68, 0.9) 0%, rgba(22, 102, 77, 0.78) 100%), url('/contact-hero.png');
     background-size: cover;

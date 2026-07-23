@@ -3,12 +3,14 @@
 }
 
 .support-page {
-  padding-top: clamp(140px, 14vw, 180px);
   background: var(--off-white);
   min-height: 100vh;
 }
 
-.support-hero,
+.support-hero {
+  padding: 0 0 80px;
+}
+
 .support-chat-section {
   padding: 80px 0;
 }

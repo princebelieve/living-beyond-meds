@@ -69,7 +69,6 @@
 .causes-page,
 .support-page,
 .home-page {
-    padding-top: var(--page-top-offset);
 }
 
 .text-center {

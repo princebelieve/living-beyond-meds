@@ -80,7 +80,6 @@
 .home-page .hero-section {
     position: relative;
     min-height: 100svh;
-    padding-top: 90px;
     display: flex;
     align-items: center;
     color: var(--white);

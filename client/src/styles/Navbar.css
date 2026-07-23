@@ -13,8 +13,8 @@
     box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
 }
 
-body > .navbar + * {
-    padding-top: var(--page-top-offset);
+.navbar + * {
+    padding-top: var(--navbar-height);
 }
 
 .navbar-scrolled {

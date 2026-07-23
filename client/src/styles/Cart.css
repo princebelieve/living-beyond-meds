@@ -1,5 +1,4 @@
 .cart-page {
-  padding-top: clamp(100px, 12vw, 140px);
   background: var(--white);
 }
 

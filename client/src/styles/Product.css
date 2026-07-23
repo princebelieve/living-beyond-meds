@@ -3,7 +3,6 @@
    ======================================== */
 
 .products-page {
-    padding-top: var(--page-top-offset);
     background: var(--off-white);
 }
 
